@@ -20,6 +20,8 @@ module.exports = {
    * @return {WebpackConfig}
    */
   webpackFinal: baseConfig => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-expect-error
     const nextConfig = require('../../next.config.js')([], baseConfig)
 
     configureRootAbsoluteImport(baseConfig)
