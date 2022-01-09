@@ -5,12 +5,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "npm.packageManager": "yarn",
-  "css.validate": false,
-  "less.validate": false,
-  "scss.validate": false,
   "editor.codeActionsOnSave": {
-    "source.fixAll.markdownlint": true,
-    "source.fixAll.stylelint": true
-  },
-  "stylelint.validate": ["css", "scss"]
+    "source.fixAll.markdownlint": true
+  }
 }
