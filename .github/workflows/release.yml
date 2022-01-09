@@ -1,0 +1,23 @@
+name: Publish
+on:
+  push:
+    branches:
+      - main
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 'lts/*'
+          registry-url: https://registry.npmjs.org/
+      - name: restore dependencies
+        uses: bahmutov/npm-install@v1
+      - name: release
+        run: yarn release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

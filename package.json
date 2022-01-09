@@ -1,0 +1,70 @@
+{
+  "name": "storybook-addon-next",
+  "version": "0.0.0-development",
+  "author": "ryanclementshax",
+  "license": "MIT",
+  "description": "A Storybook addon that allows Next.js to work with Storybook out of the box",
+  "keywords": [
+    "storybook",
+    "addon",
+    "next",
+    "nextjs"
+  ],
+  "homepage": "https://github.com/RyanClementsHax/storybook-addon-next#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RyanClementsHax/storybook-addon-next.git"
+  },
+  "bugs": {
+    "url": "https://github.com/RyanClementsHax/storybook-addon-next/issues"
+  },
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "yarn clean && tsc --project tsconfig.build.json",
+    "clean": "tsc --build --clean",
+    "type-check": "tsc --pretty --noEmit",
+    "format": "prettier --write",
+    "format:all": "yarn format .",
+    "lint:all": "yarn lint:js:all && yarn lint:styles:all",
+    "lint:js": "eslint --fix",
+    "lint:js:all": "yarn lint:js .",
+    "lint:styles": "stylelint --allow-empty-input --fix",
+    "lint:styles:all": "yarn lint:styles ./**/*.{scss,css}",
+    "test": "jest",
+    "test:all": "yarn lint:all && yarn type-check && yarn test",
+    "prepare": "husky install",
+    "prepublishOnly": "yarn build",
+    "release": "semantic-release"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/jest": "^27.0.3",
+    "@typescript-eslint/eslint-plugin": "^5.6.0",
+    "@typescript-eslint/parser": "^5.6.0",
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "3.3.0",
+    "eslint": "^8.4.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-typescript": "^3.0.0",
+    "eslint-plugin-jest": "^25.3.0",
+    "husky": "^7.0.4",
+    "jest": "^27.4.4",
+    "jest-watch-typeahead": "^1.0.0",
+    "lint-staged": "^12.1.2",
+    "prettier": "^2.5.1",
+    "semantic-release": "^18.0.1",
+    "stylelint": "^14.1.0",
+    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-config-recommended-scss": "^5.0.2",
+    "stylelint-config-standard": "^24.0.0",
+    "stylelint-prettier": "^2.0.0",
+    "ts-jest": "^27.1.1",
+    "tslib": "^2.3.1",
+    "typescript": "^4.5.3"
+  },
+  "peerDependencies": {}
+}
