@@ -10099,12 +10099,9 @@ storybook-addon-next-router@^3.1.1:
   dependencies:
     tslib "^2.3.0"
 
-"storybook-addon-next@file:../..":
-  version "0.0.0-development"
-  dependencies:
-    image-size "^1.0.0"
-    loader-utils "^3.2.0"
-    storybook-addon-next-router "^3.1.1"
+"storybook-addon-next@link:../..":
+  version "0.0.0"
+  uid ""
 
 stream-browserify@3.0.0:
   version "3.0.0"
