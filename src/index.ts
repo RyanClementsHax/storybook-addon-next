@@ -1,50 +1,36 @@
 // https://storybook.js.org/docs/react/addons/writing-presets
 
-/* eslint-disable @typescript-eslint/no-var-requires */
-const path = require('path')
+import path from 'path'
+import { NextConfig } from 'next'
+import { Configuration as WebpackConfig } from 'webpack'
 
-/**
- * @typedef {import('next').NextConfig} NextConfig
- * @typedef {import('webpack').Configuration} WebpackConfig
- */
-
-module.exports = {
+export default {
   addons: ['storybook-addon-next-router'],
-  /**
-   * @param {string[]} entry
-   * @return {string[]}
-   */
-  config: (entry = []) => [...entry, require.resolve('./preview')],
-  /**
-   * @param {WebpackConfig} baseConfig
-   * @return {WebpackConfig}
-   */
-  webpackFinal: baseConfig => {
+  config: (entry: string[] = []): string[] => [
+    ...entry,
+    require.resolve('./preview')
+  ],
+  async webpackFinal(baseConfig: WebpackConfig): Promise<WebpackConfig> {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-expect-error
-    const nextConfig = require('../../next.config.js')([], baseConfig)
+    const nextConfig = await import('./next.config.js')
+    const nextConfigResolved: NextConfig = nextConfig([], baseConfig)
 
     configureRootAbsoluteImport(baseConfig)
-    configureCss(baseConfig, nextConfig)
+    configureCss(baseConfig, nextConfigResolved)
     configureStaticImageImport(baseConfig)
 
     return baseConfig
   }
 }
 
-/**
- * @param {WebpackConfig} baseConfig
- * @return {void}
- */
-const configureRootAbsoluteImport = baseConfig =>
+const configureRootAbsoluteImport = (baseConfig: WebpackConfig): void =>
   void baseConfig.resolve?.modules?.push(path.resolve())
 
-/**
- * @param {WebpackConfig} baseConfig
- * @param {NextConfig} nextConfig
- * @return {void}
- */
-const configureCss = (baseConfig, nextConfig) =>
+const configureCss = (
+  baseConfig: WebpackConfig,
+  nextConfig: NextConfig
+): void =>
   void baseConfig.module?.rules?.push({
     test: /\.(s*)css$/,
     use: [
@@ -67,11 +53,7 @@ const configureCss = (baseConfig, nextConfig) =>
     ]
   })
 
-/**
- * @param {WebpackConfig} baseConfig
- * @return {void}
- */
-const configureStaticImageImport = baseConfig => {
+const configureStaticImageImport = (baseConfig: WebpackConfig): void => {
   if (!baseConfig.module) baseConfig.module = {}
   if (!baseConfig.module.rules) baseConfig.module.rules = []
 

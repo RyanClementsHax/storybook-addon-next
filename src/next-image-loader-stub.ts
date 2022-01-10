@@ -1,12 +1,14 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-const { interpolateName } = require('loader-utils')
-const imageSizeOf = require('image-size').default
+import { interpolateName } from 'loader-utils'
+import imageSizeOf from 'image-size'
+import { RawLoaderDefinition } from 'webpack'
 
-/** @typedef {{ filename: string }} LoaderOptions */
-/**
- * @type {import('webpack').RawLoaderDefinition<LoaderOptions>}
- */
-const nextImageLoaderStub = async function (content) {
+interface LoaderOptions {
+  filename: string
+}
+
+const nextImageLoaderStub: RawLoaderDefinition<LoaderOptions> = async function (
+  content
+) {
   const { filename } = this.getOptions()
   const outputPath = interpolateName(
     this,
@@ -31,4 +33,4 @@ const nextImageLoaderStub = async function (content) {
 
 nextImageLoaderStub.raw = true
 
-module.exports = nextImageLoaderStub
+export default nextImageLoaderStub
