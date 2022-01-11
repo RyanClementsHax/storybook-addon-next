@@ -21,10 +21,10 @@ const nextImageLoaderStub: RawLoaderDefinition<LoaderOptions> = async function (
 
   this.emitFile(outputPath, content, undefined)
 
-  const { width, height } = imageSizeOf(content)
+  const { width, height } = imageSizeOf(Buffer.from(content))
 
   return `export default ${JSON.stringify({
-    src: outputPath,
+    src: `/${outputPath}`,
     height,
     width,
     blurDataURL: outputPath

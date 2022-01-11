@@ -4,26 +4,35 @@ import path from 'path'
 import { NextConfig } from 'next'
 import { Configuration as WebpackConfig } from 'webpack'
 
-export const addons = ['storybook-addon-next-router']
+console.log(require.resolve('./preview'))
+
+// export const addons = ['storybook-addon-next-router']
 
 export const config = (entry: string[] = []): string[] => [
   ...entry,
   require.resolve('./preview')
 ]
 
+export const managerEntries = (entry: string[] = []): string[] => [
+  ...entry,
+  require.resolve('./register')
+]
+
 export const webpackFinal = async (
-  baseConfig: WebpackConfig,
-  ...params: unknown[]
+  baseConfig: WebpackConfig
 ): Promise<WebpackConfig> => {
-  console.log(params)
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  //@ts-expect-error
-  const nextConfig = await import('./next.config.js')
-  const nextConfigResolved: NextConfig = nextConfig([], baseConfig)
+  // check
+  const nextConfig = await import(
+    path.resolve(path.resolve(), 'next.config.js')
+  )
+  const nextConfigResolved: NextConfig =
+    typeof nextConfig === 'function' ? nextConfig([], baseConfig) : nextConfig
 
   configureRootAbsoluteImport(baseConfig)
-  configureCss(baseConfig, nextConfigResolved)
+  // configureCss(baseConfig, nextConfigResolved)
   configureStaticImageImport(baseConfig)
+
+  console.log(baseConfig.module?.rules as any)
 
   return baseConfig
 }
