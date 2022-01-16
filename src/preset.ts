@@ -24,7 +24,7 @@ export const webpackFinal = async (
     typeof nextConfig === 'function' ? nextConfig([], baseConfig) : nextConfig
 
   configureRootAbsoluteImport(baseConfig)
-  // configureCss(baseConfig, nextConfigResolved)
+  configureCss(baseConfig, nextConfigResolved)
   configureStaticImageImport(baseConfig)
   configureNextImageStub(baseConfig)
   // console.log(baseConfig.module?.rules as any)
