@@ -4,8 +4,6 @@ import { MyComponent } from 'components/MyComponent'
 import styles from '../styles/Home.module.css'
 import nyanCatImgSrc from 'public/vercel.svg'
 
-console.log(nyanCatImgSrc)
-
 export default function Home() {
   return (
     <div className={styles.container}>

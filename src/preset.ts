@@ -4,8 +4,6 @@ import path from 'path'
 import { NextConfig } from 'next'
 import { Configuration as WebpackConfig } from 'webpack'
 
-console.log(require.resolve('./preview'))
-
 // export const addons = ['storybook-addon-next-router']
 
 export const config = (entry: string[] = []): string[] => [
@@ -22,17 +20,15 @@ export const webpackFinal = async (
   baseConfig: WebpackConfig
 ): Promise<WebpackConfig> => {
   // check
-  const nextConfig = await import(
-    path.resolve(path.resolve(), 'next.config.js')
-  )
+  const nextConfig = await import(path.resolve('next.config.js'))
   const nextConfigResolved: NextConfig =
     typeof nextConfig === 'function' ? nextConfig([], baseConfig) : nextConfig
 
   configureRootAbsoluteImport(baseConfig)
   // configureCss(baseConfig, nextConfigResolved)
   configureStaticImageImport(baseConfig)
-
-  console.log(baseConfig.module?.rules as any)
+  configureNextImageStub(baseConfig)
+  // console.log(baseConfig.module?.rules as any)
 
   return baseConfig
 }
@@ -90,4 +86,21 @@ const configureStaticImageImport = (baseConfig: WebpackConfig): void => {
       }
     }
   })
+}
+
+const configureNextImageStub = (baseConfig: WebpackConfig): void => {
+  if (!baseConfig.resolve) baseConfig.resolve = {}
+  if (!baseConfig.resolve.alias) baseConfig.resolve.alias = {}
+
+  const aliasConfig = baseConfig.resolve.alias
+  const name = 'next/image'
+  const alias = path.resolve('node_modules/next/image')
+  if (Array.isArray(aliasConfig)) {
+    aliasConfig.push({
+      alias,
+      name
+    })
+  } else {
+    aliasConfig[name] = alias
+  }
 }
