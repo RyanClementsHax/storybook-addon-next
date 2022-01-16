@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import { MyComponent } from 'components/MyComponent'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Home.module.scss'
 import nyanCatImgSrc from 'public/vercel.svg'
 
 export default function Home() {

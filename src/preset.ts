@@ -19,7 +19,6 @@ export const managerEntries = (entry: string[] = []): string[] => [
 export const webpackFinal = async (
   baseConfig: WebpackConfig
 ): Promise<WebpackConfig> => {
-  // check
   const nextConfig = await import(path.resolve('next.config.js'))
   const nextConfigResolved: NextConfig =
     typeof nextConfig === 'function' ? nextConfig([], baseConfig) : nextConfig
