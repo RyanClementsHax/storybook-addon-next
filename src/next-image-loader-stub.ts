@@ -19,7 +19,7 @@ const nextImageLoaderStub: RawLoaderDefinition<LoaderOptions> = async function (
     }
   )
 
-  this.emitFile(outputPath, content, undefined)
+  this.emitFile(outputPath, content)
 
   const { width, height } = imageSizeOf(Buffer.from(content))
 

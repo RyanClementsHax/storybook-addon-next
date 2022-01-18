@@ -3,10 +3,11 @@
 import path from 'path'
 import { NextConfig } from 'next'
 import { Configuration as WebpackConfig } from 'webpack'
+import { StorybookConfig } from '@storybook/core-common'
 
-// export const addons = ['storybook-addon-next-router']
+export const addons: StorybookConfig['addons'] = ['storybook-addon-next-router']
 
-export const config = (entry: string[] = []): string[] => [
+export const config: StorybookConfig['config'] = (entry = []) => [
   ...entry,
   require.resolve('./preview')
 ]
@@ -16,21 +17,19 @@ export const managerEntries = (entry: string[] = []): string[] => [
   require.resolve('./register')
 ]
 
-export const webpackFinal = async (
-  baseConfig: WebpackConfig
-): Promise<WebpackConfig> => {
-  const nextConfig = await import(path.resolve('next.config.js'))
-  const nextConfigResolved: NextConfig =
-    typeof nextConfig === 'function' ? nextConfig([], baseConfig) : nextConfig
+export const webpackFinal: StorybookConfig['webpackFinal'] =
+  async baseConfig => {
+    const nextConfig = await import(path.resolve('next.config.js'))
+    const nextConfigResolved: NextConfig =
+      typeof nextConfig === 'function' ? nextConfig([], baseConfig) : nextConfig
 
-  configureRootAbsoluteImport(baseConfig)
-  configureCss(baseConfig, nextConfigResolved)
-  configureStaticImageImport(baseConfig)
-  configureNextImageStub(baseConfig)
-  // console.log(baseConfig.module?.rules as any)
+    configureRootAbsoluteImport(baseConfig)
+    configureCss(baseConfig, nextConfigResolved)
+    configureStaticImageImport(baseConfig)
+    configureNextImageStub(baseConfig)
 
-  return baseConfig
-}
+    return baseConfig
+  }
 
 const configureRootAbsoluteImport = (baseConfig: WebpackConfig): void =>
   void baseConfig.resolve?.modules?.push(path.resolve())
