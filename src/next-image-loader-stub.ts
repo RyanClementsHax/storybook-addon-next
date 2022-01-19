@@ -6,7 +6,7 @@ interface LoaderOptions {
   filename: string
 }
 
-const nextImageLoaderStub: RawLoaderDefinition<LoaderOptions> = async function (
+const nextImageLoaderStub: RawLoaderDefinition<LoaderOptions> = function (
   content
 ) {
   const { filename } = this.getOptions()
@@ -21,10 +21,10 @@ const nextImageLoaderStub: RawLoaderDefinition<LoaderOptions> = async function (
 
   this.emitFile(outputPath, content)
 
-  const { width, height } = imageSizeOf(Buffer.from(content))
+  const { width, height } = imageSizeOf(content)
 
   return `export default ${JSON.stringify({
-    src: `/${outputPath}`,
+    src: outputPath,
     height,
     width,
     blurDataURL: outputPath
@@ -33,4 +33,4 @@ const nextImageLoaderStub: RawLoaderDefinition<LoaderOptions> = async function (
 
 nextImageLoaderStub.raw = true
 
-export default nextImageLoaderStub
+export = nextImageLoaderStub
