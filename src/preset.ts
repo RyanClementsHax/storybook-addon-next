@@ -5,8 +5,6 @@ import { NextConfig } from 'next'
 import { Configuration as WebpackConfig } from 'webpack'
 import { StorybookConfig } from '@storybook/core-common'
 
-export const addons: StorybookConfig['addons'] = ['storybook-addon-next-router']
-
 export const config: StorybookConfig['config'] = (entry = []) => [
   ...entry,
   require.resolve('./preview')
@@ -26,7 +24,7 @@ export const webpackFinal: StorybookConfig['webpackFinal'] =
     configureRootAbsoluteImport(baseConfig)
     configureCss(baseConfig, nextConfigResolved)
     configureStaticImageImport(baseConfig)
-    configureNextImageStub(baseConfig)
+    configureModuleAliases(baseConfig)
 
     return baseConfig
   }
@@ -75,7 +73,7 @@ const configureStaticImageImport = (baseConfig: WebpackConfig): void => {
         test: rule.test,
         use: [
           {
-            loader: path.resolve(__dirname, 'next-image-loader-stub'),
+            loader: path.resolve(__dirname, './webpack/next-image-loader-stub'),
             options: {
               filename: rule.generator?.filename
             }
@@ -86,19 +84,23 @@ const configureStaticImageImport = (baseConfig: WebpackConfig): void => {
   })
 }
 
-const configureNextImageStub = (baseConfig: WebpackConfig): void => {
+// This is to help the addon in development
+// Without it, the addon resolves packages in its node_modules instead of the example's node_modules
+const configureModuleAliases = (baseConfig: WebpackConfig): void => {
   if (!baseConfig.resolve) baseConfig.resolve = {}
   if (!baseConfig.resolve.alias) baseConfig.resolve.alias = {}
 
   const aliasConfig = baseConfig.resolve.alias
-  const name = 'next/image'
-  const alias = path.resolve('node_modules/next/image')
-  if (Array.isArray(aliasConfig)) {
-    aliasConfig.push({
-      alias,
-      name
-    })
-  } else {
-    aliasConfig[name] = alias
+  const names = ['next/image', 'next/dist/shared/lib/router-context']
+  for (const name of names) {
+    const alias = path.resolve(`node_modules/${name}`)
+    if (Array.isArray(aliasConfig)) {
+      aliasConfig.push({
+        name,
+        alias
+      })
+    } else {
+      aliasConfig[name] = alias
+    }
   }
 }

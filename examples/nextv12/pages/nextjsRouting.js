@@ -9,7 +9,9 @@ export default function NextjsRouting() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Links />
-      <main>The links used to navigate this example use next.js routing</main>
+      <main>
+        Interact with any of the links and look at the "Actions" tab below
+      </main>
     </div>
   )
 }

@@ -1,8 +1,4 @@
-import { RouterContext } from 'next/dist/shared/lib/router-context'
-import './next-image-stub'
+import { RouterDecorator } from './decorators/Router'
+import './stubs/next-image-stub'
 
-export const parameters = {
-  nextRouter: {
-    Provider: RouterContext.Provider
-  }
-}
+export const decorators = [RouterDecorator]
