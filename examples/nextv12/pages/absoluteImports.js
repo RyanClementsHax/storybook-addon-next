@@ -9,8 +9,8 @@ export default function AbsoluteImports() {
         <title>Absolute Imports</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Links />
       <main>
-        <Links />
         This uses an absolute import:{' '}
         <MyComponent>Im absolutely imported</MyComponent>
       </main>

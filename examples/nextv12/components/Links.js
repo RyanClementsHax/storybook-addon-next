@@ -6,6 +6,18 @@ export const Links = () => (
       <Link href="/">Home</Link>
     </li>
     <li>
+      <Link href="/nextjsRouting">Next.js Routing Example</Link>
+    </li>
+    <li>
+      <Link href="/nextjsImages">Next.js Images Example</Link>
+    </li>
+    <li>
+      <Link href="/globalStyleImports">Global Style Imports Example</Link>
+    </li>
+    <li>
+      <Link href="/cssModules">Css Module Example</Link>
+    </li>
+    <li>
       <Link href="/scssModules">Scss Module Example</Link>
     </li>
     <li>
@@ -13,12 +25,6 @@ export const Links = () => (
     </li>
     <li>
       <Link href="/typescript">Typescript Example</Link>
-    </li>
-    <li>
-      <Link href="/nextjsRouting">Next.js Routing Example</Link>
-    </li>
-    <li>
-      <Link href="/nextjsImages">Next.js Images Example</Link>
     </li>
   </ul>
 )
