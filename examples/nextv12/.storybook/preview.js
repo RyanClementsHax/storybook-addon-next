@@ -8,5 +8,10 @@ export const parameters = {
       color: /(background|color)$/i,
       date: /Date$/
     }
+  },
+  nextRouter: {
+    query: {
+      foo: 'this-is-a-global-override'
+    }
   }
 }

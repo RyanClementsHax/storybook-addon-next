@@ -193,6 +193,8 @@ Example.parameters: {
 }
 ```
 
+See this [example](./examples/nextv12/stories/pages/nextjsRouting.stories.jsx) for a reference.
+
 #### Global Defaults
 
 Global defaults can be set in [preview.js](https://storybook.js.org/docs/react/configure/overview#configure-story-rendering) and will be shallowly merged with the default router.
@@ -206,6 +208,8 @@ export const parameters = {
   }
 }
 ```
+
+See this [example](./examples/nextv12/.storybook/preview.js) for a reference.
 
 #### Default Router
 

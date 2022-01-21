@@ -6,3 +6,9 @@ export default {
 }
 
 export const NextjsRoutingPage = () => <NextjsRouting />
+
+NextjsRoutingPage.parameters = {
+  nextRouter: {
+    route: 'this-is-a-story-override'
+  }
+}
