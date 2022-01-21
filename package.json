@@ -3,7 +3,7 @@
   "version": "0.0.0-development",
   "author": "ryanclementshax",
   "license": "MIT",
-  "description": "A Storybook addon that allows Next.js to work with Storybook out of the box",
+  "description": "A no config Storybook addon that makes Next.js features just work in Storybook",
   "keywords": [
     "storybook",
     "addon",
