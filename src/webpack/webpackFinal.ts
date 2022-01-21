@@ -32,29 +32,29 @@ const configureCss = (
   baseConfig: WebpackConfig,
   nextConfig: NextConfig
 ): void => {
-  baseConfig.module?.rules?.forEach(rule => {
+  const rules = baseConfig.module?.rules
+  rules?.forEach((rule, i) => {
     if (
       typeof rule !== 'string' &&
       rule.test instanceof RegExp &&
       rule.test.test('test.css')
     ) {
-      rule.exclude = /\.module\.css$/
+      rules[i] = {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: { auto: true }
+            }
+          },
+          'postcss-loader'
+        ]
+      }
     }
   })
-  baseConfig.module?.rules?.push({
-    test: /\.module\.css$/,
-    use: [
-      'style-loader',
-      {
-        loader: 'css-loader',
-        options: {
-          modules: { auto: true }
-        }
-      },
-      'postcss-loader'
-    ]
-  })
-  baseConfig.module?.rules?.push({
+  rules?.push({
     test: /\.(scss|sass)$/,
     use: [
       'style-loader',

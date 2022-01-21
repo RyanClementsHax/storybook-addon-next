@@ -29,6 +29,7 @@
     - [Actions Integration Caveats](#actions-integration-caveats)
   - [Sass/Scss](#sassscss)
   - [Css/Sass/Scss Modules](#csssassscss-modules)
+  - [Postcss](#postcss)
   - [Absolute Imports](#absolute-imports)
   - [Typescript](#typescript)
 - [Similar Projects](#similar-projects)
@@ -37,17 +38,19 @@
 
 ## Supported Features
 
-👉 Next.js's `Image` component
+👉 [Next.js's Image Component](#nextjss-image-component)
 
-👉 Next.js routing
+👉 [Next.js Routing](#nextjs-routing)
 
-👉 Sass/Scss
+👉 [Sass/Scss](#sassscss)
 
-👉 Css/Sass/Scss Modules
+👉 [Css/Sass/Scss Modules](#csssassscss-modules)
 
-👉 Absolute imports
+👉 [Postcss](#postcss)
 
-👉 Typescript (already supported by Storybook)
+👉 [Absolute Imports](#absolute-imports)
+
+👉 [Typescript](#typescript) (already supported out of the box by Storybook)
 
 ## Required Versions
 
@@ -57,6 +60,7 @@
 ## Examples
 
 - Nextjs v12 - [Source](./examples/nextv12/README.md)
+- Tailwindcss - [Source](./examples/with-tailwindcss/README.md)
 
 ## Getting Started
 
@@ -322,6 +326,12 @@ export function Button() {
   )
 }
 ```
+
+### Postcss
+
+Next.js lets you [customize postcss config](https://nextjs.org/docs/advanced-features/customizing-postcss-config#default-behavior). Thus this addon will automatically handle your postcss config for you.
+
+This allows for cool things like zero config tailwindcss! See the [with-tailwindcss example](examples/with-tailwindcss/README.md) for reference! Its a clone of [Next.js's tailwindcss example](https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss) set up with storybook and this addon.
 
 ### Absolute Imports
 

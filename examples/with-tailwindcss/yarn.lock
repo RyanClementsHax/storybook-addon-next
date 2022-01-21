@@ -9191,19 +9191,9 @@ store2@^2.12.0:
   resolved "https://registry.yarnpkg.com/store2/-/store2-2.13.1.tgz#fae7b5bb9d35fc53dc61cd262df3abb2f6e59022"
   integrity sha512-iJtHSGmNgAUx0b/MCS6ASGxb//hGrHHRgzvN+K5bvkBTN7A9RTpPSf1WSp+nPGvWCJ1jRnvY7MKnuqfoi3OEqg==
 
-storybook-addon-next@latest:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/storybook-addon-next/-/storybook-addon-next-1.0.3.tgz#62be6b9ac34b9b2f0dbdef11b1a2e702d7fcbf99"
-  integrity sha512-mfLIbbvlsQrwQdQZ6TM99+7g8tpcy2es6sTnhLCxCRl/RiufCRoBU5IK74WqhTzQnmzG3dwpWWAxsuVN/pQyOw==
-  dependencies:
-    "@storybook/addons" "^6.4.10"
-    css-loader "^6.5.1"
-    image-size "^1.0.0"
-    loader-utils "^3.2.0"
-    postcss-loader "^6.2.1"
-    resolve-url-loader "^5.0.0"
-    sass-loader "^12.4.0"
-    style-loader "^3.3.1"
+"storybook-addon-next@link:../..":
+  version "0.0.0"
+  uid ""
 
 stream-browserify@3.0.0:
   version "3.0.0"
