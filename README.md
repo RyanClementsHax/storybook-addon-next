@@ -205,7 +205,7 @@ export const parameters = {
 
 #### Default Router
 
-The default values on the stubbed router are as follows
+The default values on the stubbed router are as follows (see [globals](https://storybook.js.org/docs/react/essentials/toolbars-and-globals#globals) for more details on how globals work)
 
 ```ts
 const defaultRouter = {

@@ -3,6 +3,46 @@ import Router, { NextRouter } from 'next/router'
 import { action } from '@storybook/addon-actions'
 import { StoryContext } from '@storybook/addons'
 
+const defaultRouter = {
+  route: '/',
+  pathname: '/',
+  query: {},
+  asPath: '/',
+  push(...args: unknown[]): Promise<boolean> {
+    action('nextRouter.push')(...args)
+    return Promise.resolve(true)
+  },
+  replace(...args: unknown[]): Promise<boolean> {
+    action('nextRouter.replace')(...args)
+    return Promise.resolve(true)
+  },
+  reload(...args: unknown[]): void {
+    action('nextRouter.reload')(...args)
+  },
+  back(...args: unknown[]): void {
+    action('nextRouter.back')(...args)
+  },
+  prefetch(...args: unknown[]): Promise<void> {
+    action('nextRouter.prefetch')(...args)
+    return Promise.resolve()
+  },
+  beforePopState(...args: unknown[]): void {
+    action('nextRouter.beforePopState')(...args)
+  },
+  events: {
+    on(...args: unknown[]): void {
+      action('nextRouter.events.on')(...args)
+    },
+    off(...args: unknown[]): void {
+      action('nextRouter.events.off')(...args)
+    },
+    emit(...args: unknown[]): void {
+      action('nextRouter.events.emit')(...args)
+    }
+  },
+  isFallback: false
+}
+
 export const RouterDecorator = (
   Story: React.FC,
   context: StoryContext
@@ -10,44 +50,8 @@ export const RouterDecorator = (
   const nextRouterParams = context.parameters.nextRouter ?? {}
 
   Router.router = {
+    ...defaultRouter,
     locale: context?.globals?.locale,
-    route: '/',
-    pathname: '/',
-    query: {},
-    asPath: '/',
-    push(...args: unknown[]) {
-      action('nextRouter.push')(...args)
-      return Promise.resolve(true)
-    },
-    replace(...args: unknown[]) {
-      action('nextRouter.replace')(...args)
-      return Promise.resolve(true)
-    },
-    reload(...args: unknown[]) {
-      action('nextRouter.reload')(...args)
-    },
-    back(...args: unknown[]) {
-      action('nextRouter.back')(...args)
-    },
-    prefetch(...args: unknown[]) {
-      action('nextRouter.prefetch')(...args)
-      return Promise.resolve()
-    },
-    beforePopState(...args: unknown[]) {
-      action('nextRouter.beforePopState')(...args)
-    },
-    events: {
-      on(...args: unknown[]) {
-        action('nextRouter.events.on')(...args)
-      },
-      off(...args: unknown[]) {
-        action('nextRouter.events.off')(...args)
-      },
-      emit(...args: unknown[]) {
-        action('nextRouter.events.emit')(...args)
-      }
-    },
-    isFallback: false,
     ...nextRouterParams
   } as typeof Router.router
 
