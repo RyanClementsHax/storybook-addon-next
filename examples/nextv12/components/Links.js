@@ -21,6 +21,9 @@ export const Links = () => (
       <Link href="/scssModules">Scss Module Example</Link>
     </li>
     <li>
+      <Link href="/styledJsx">Styled JSX Example</Link>
+    </li>
+    <li>
       <Link href="/absoluteImports">Absolute Import Example</Link>
     </li>
     <li>

@@ -49,6 +49,7 @@
   "devDependencies": {
     "@storybook/addon-actions": "^6.4.13",
     "@storybook/core-common": "^6.4.13",
+    "@types/babel__core": "^7.1.18",
     "@types/loader-utils": "^2.0.3",
     "@types/react": "^17.0.38",
     "@typescript-eslint/eslint-plugin": "^5.6.0",

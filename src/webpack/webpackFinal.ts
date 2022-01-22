@@ -109,7 +109,11 @@ const configureModuleAliases = (baseConfig: WebpackConfig): void => {
   if (!baseConfig.resolve.alias) baseConfig.resolve.alias = {}
 
   const aliasConfig = baseConfig.resolve.alias
-  const names = ['next/image', 'next/dist/shared/lib/router-context']
+  const names = [
+    'next/image',
+    'next/dist/shared/lib/router-context',
+    'styled-jsx'
+  ]
   for (const name of names) {
     const alias = path.resolve(`node_modules/${name}`)
     if (Array.isArray(aliasConfig)) {

@@ -29,6 +29,7 @@
     - [Actions Integration Caveats](#actions-integration-caveats)
   - [Sass/Scss](#sassscss)
   - [Css/Sass/Scss Modules](#csssassscss-modules)
+  - [Styled JSX](#styled-jsx)
   - [Postcss](#postcss)
   - [Absolute Imports](#absolute-imports)
   - [Typescript](#typescript)
@@ -45,6 +46,8 @@
 👉 [Sass/Scss](#sassscss)
 
 👉 [Css/Sass/Scss Modules](#csssassscss-modules)
+
+👉 [Styled JSX](#styled-jsx)
 
 👉 [Postcss](#postcss)
 
@@ -329,6 +332,42 @@ export function Button() {
     </button>
   )
 }
+```
+
+### Styled JSX
+
+The built in CSS in JS solution for Next.js is [styled-jsx](https://nextjs.org/docs/basic-features/built-in-css-support#css-in-js), and this addon supports that out of the box too, zero config.
+
+```js
+// This works just fine in Storybook with this addon
+function HelloWorld() {
+  return (
+    <div>
+      Hello world
+      <p>scoped!</p>
+      <style jsx>{`
+        p {
+          color: blue;
+        }
+        div {
+          background: red;
+        }
+        @media (max-width: 600px) {
+          div {
+            background: blue;
+          }
+        }
+      `}</style>
+      <style global jsx>{`
+        body {
+          background: black;
+        }
+      `}</style>
+    </div>
+  )
+}
+
+export default HelloWorld
 ```
 
 ### Postcss
