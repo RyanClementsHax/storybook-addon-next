@@ -58,14 +58,15 @@
 ## Required Versions
 
 - [Storybook](https://storybook.js.org/) >= 6.x
-- [Next.js](https://nextjs.org/) >= 11.x
+- [Next.js](https://nextjs.org/) >= 10.x
 
 ## Examples
 
 - Nextjs v12 - [Source](./examples/nextv12/README.md)
+- Tailwindcss - [Source](./examples/with-tailwindcss/README.md)
 - Nextjs v11.1 - [Source](./examples/nextv11_1/README.md)
 - Nextjs v11.0 - [Source](./examples/nextv11_0/README.md)
-- Tailwindcss - [Source](./examples/with-tailwindcss/README.md)
+- Nextjs v10 - [Source](./examples/nextv10/README.md)
 
 ## Getting Started
 
@@ -107,7 +108,7 @@ If something doesn't work as you would expect, feel free to [open up an issue](h
 
 #### Local Images
 
-[Local images](https://nextjs.org/docs/basic-features/image-optimization#local-images) work just fine with this addon!
+[Local images](https://nextjs.org/docs/basic-features/image-optimization#local-images) work just fine with this addon! Keep in mind that this feature was [only added in Next.js v11](https://nextjs.org/blog/next-11#automatic-size-detection-local-images).
 
 ```js
 import Image from 'next/image'

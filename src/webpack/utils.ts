@@ -3,6 +3,7 @@ import { PHASE_DEVELOPMENT_SERVER } from 'next/constants'
 import { NextConfig } from 'next'
 import { Configuration as WebpackConfig } from 'webpack'
 import semver from 'semver'
+import { getNextjsVersion } from '../utils'
 
 export const resolveNextConfig = async (
   baseConfig: WebpackConfig
@@ -68,6 +69,9 @@ export const configureCss = (
 }
 
 export const configureStaticImageImport = (baseConfig: WebpackConfig): void => {
+  const version = getNextjsVersion()
+  if (semver.lt(version, '11.0.0')) return
+
   const rules = baseConfig.module?.rules
   rules?.forEach((rule, i) => {
     if (
@@ -134,7 +138,3 @@ const getRouterContextPath = () => {
     return 'next/dist/next-server/lib/router-context'
   }
 }
-
-const getNextjsVersion = () =>
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  require(path.resolve('node_modules/next/package.json')).version

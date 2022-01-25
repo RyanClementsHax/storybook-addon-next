@@ -1,4 +1,6 @@
+// this will be aliased by webpack at runtime (this is just for typing)
 import { RouterContext } from './resolved-router-context'
+// this will be aliased by webpack at runtime (this is just for typing)
 import Router from './resolved-router'
 import { action } from '@storybook/addon-actions'
 import { StoryContext } from '@storybook/addons'
@@ -56,7 +58,8 @@ export const RouterDecorator = (
   } as NonNullable<typeof Router.router>
 
   return (
-    <RouterContext.Provider value={Router.router}>
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    <RouterContext.Provider value={Router.router as any}>
       <Story />
     </RouterContext.Provider>
   )
