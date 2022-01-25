@@ -2,21 +2,9 @@ import path from 'path'
 import { PHASE_DEVELOPMENT_SERVER } from 'next/constants'
 import { NextConfig } from 'next'
 import { Configuration as WebpackConfig } from 'webpack'
-import { StorybookConfig } from '@storybook/core-common'
+import semver from 'semver'
 
-export const webpackFinal: StorybookConfig['webpackFinal'] =
-  async baseConfig => {
-    const nextConfig = await resolveNextConfig(baseConfig)
-
-    configureRootAbsoluteImport(baseConfig)
-    configureCss(baseConfig, nextConfig)
-    configureStaticImageImport(baseConfig)
-    configureModuleAliases(baseConfig)
-
-    return baseConfig
-  }
-
-const resolveNextConfig = async (
+export const resolveNextConfig = async (
   baseConfig: WebpackConfig
 ): Promise<NextConfig> => {
   const nextConfigExport = await import(path.resolve('next.config.js'))
@@ -25,10 +13,10 @@ const resolveNextConfig = async (
     : nextConfigExport
 }
 
-const configureRootAbsoluteImport = (baseConfig: WebpackConfig): void =>
+export const configureRootAbsoluteImport = (baseConfig: WebpackConfig): void =>
   void baseConfig.resolve?.modules?.push(path.resolve())
 
-const configureCss = (
+export const configureCss = (
   baseConfig: WebpackConfig,
   nextConfig: NextConfig
 ): void => {
@@ -79,7 +67,7 @@ const configureCss = (
   })
 }
 
-const configureStaticImageImport = (baseConfig: WebpackConfig): void => {
+export const configureStaticImageImport = (baseConfig: WebpackConfig): void => {
   const rules = baseConfig.module?.rules
   rules?.forEach((rule, i) => {
     if (
@@ -91,7 +79,7 @@ const configureStaticImageImport = (baseConfig: WebpackConfig): void => {
         test: rule.test,
         use: [
           {
-            loader: path.resolve(__dirname, './next-image-loader-stub'),
+            loader: path.resolve(__dirname, '../images/next-image-loader-stub'),
             options: {
               filename: rule.generator?.filename
             }
@@ -102,27 +90,51 @@ const configureStaticImageImport = (baseConfig: WebpackConfig): void => {
   })
 }
 
-// This is to help the addon in development
+// This resolves the router context path with the installed version of Next.js
+// This is also to help the addon in development
 // Without it, the addon resolves packages in its node_modules instead of the example's node_modules
-const configureModuleAliases = (baseConfig: WebpackConfig): void => {
+export const configureModuleAliases = (baseConfig: WebpackConfig): void => {
   if (!baseConfig.resolve) baseConfig.resolve = {}
   if (!baseConfig.resolve.alias) baseConfig.resolve.alias = {}
 
   const aliasConfig = baseConfig.resolve.alias
-  const names = [
-    'next/image',
-    'next/dist/shared/lib/router-context',
-    'styled-jsx'
-  ]
-  for (const name of names) {
-    const alias = path.resolve(`node_modules/${name}`)
-    if (Array.isArray(aliasConfig)) {
-      aliasConfig.push({
-        name,
-        alias
-      })
-    } else {
-      aliasConfig[name] = alias
-    }
+  const routerContextPath = getRouterContextPath()
+  ;['next/image', routerContextPath, 'styled-jsx'].forEach(name =>
+    addScopedAlias(aliasConfig, name, name)
+  )
+
+  addScopedAlias(
+    aliasConfig,
+    routerContextPath,
+    require.resolve('../routing/resolved-router-context')
+  )
+}
+
+const addScopedAlias = (
+  aliasConfig: NonNullable<NonNullable<WebpackConfig['resolve']>['alias']>,
+  alias: string,
+  name: string
+) => {
+  const scopedAlias = path.resolve(`node_modules/${alias}`)
+  if (Array.isArray(aliasConfig)) {
+    aliasConfig.push({
+      name,
+      alias: scopedAlias
+    })
+  } else {
+    aliasConfig[name] = scopedAlias
   }
 }
+
+const getRouterContextPath = () => {
+  const version = getNextjsVersion()
+  if (semver.gte(version, '12.0.0')) {
+    return 'next/dist/shared/lib/router-context'
+  } else {
+    return 'next/dist/next-server/lib/router-context'
+  }
+}
+
+const getNextjsVersion = () =>
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  require(path.resolve('node_modules/next/package.json')).version

@@ -1,5 +1,5 @@
-import { RouterContext } from 'next/dist/shared/lib/router-context'
-import Router, { NextRouter } from 'next/router'
+import { RouterContext } from './resolved-router-context'
+import Router from './resolved-router'
 import { action } from '@storybook/addon-actions'
 import { StoryContext } from '@storybook/addons'
 
@@ -53,10 +53,10 @@ export const RouterDecorator = (
     ...defaultRouter,
     locale: context?.globals?.locale,
     ...nextRouterParams
-  } as typeof Router.router
+  } as NonNullable<typeof Router.router>
 
   return (
-    <RouterContext.Provider value={Router.router as NextRouter}>
+    <RouterContext.Provider value={Router.router}>
       <Story />
     </RouterContext.Provider>
   )

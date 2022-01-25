@@ -2,6 +2,13 @@
 
 import { StorybookConfig } from '@storybook/core-common'
 import { TransformOptions } from '@babel/core'
+import {
+  configureCss,
+  configureModuleAliases,
+  configureRootAbsoluteImport,
+  configureStaticImageImport,
+  resolveNextConfig
+} from './webpack/utils'
 
 export const config: StorybookConfig['config'] = (entry = []) => [
   ...entry,
@@ -18,4 +25,14 @@ export const babel = (config: TransformOptions): TransformOptions => ({
   plugins: [...(config.plugins ?? []), 'styled-jsx/babel']
 })
 
-export { webpackFinal } from './webpack/webpackFinal'
+export const webpackFinal: StorybookConfig['webpackFinal'] =
+  async baseConfig => {
+    const nextConfig = await resolveNextConfig(baseConfig)
+
+    configureRootAbsoluteImport(baseConfig)
+    configureCss(baseConfig, nextConfig)
+    configureStaticImageImport(baseConfig)
+    configureModuleAliases(baseConfig)
+
+    return baseConfig
+  }
