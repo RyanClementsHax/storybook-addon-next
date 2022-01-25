@@ -1,5 +1,5 @@
 {
-  "name": "nextv12",
+  "name": "nextv11_0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -10,9 +10,9 @@
     "build-storybook": "build-storybook -s public"
   },
   "dependencies": {
-    "next": "^12.0.7",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "next": "11.0.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
     "sass": "^1.49.0"
   },
   "devDependencies": {
@@ -24,8 +24,8 @@
     "@storybook/manager-webpack5": "^6.4.9",
     "@storybook/react": "^6.4.9",
     "babel-loader": "^8.2.3",
-    "eslint": "^8.6.0",
-    "eslint-config-next": "^12.0.7",
+    "eslint": "8.6.0",
+    "eslint-config-next": "12.0.7",
     "eslint-plugin-storybook": "^0.5.5",
     "storybook-addon-next": "link:../../"
   }

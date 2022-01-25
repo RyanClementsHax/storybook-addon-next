@@ -58,11 +58,13 @@
 ## Required Versions
 
 - [Storybook](https://storybook.js.org/) >= 6.x
-- [Next.js](https://nextjs.org/) >= 12.x
+- [Next.js](https://nextjs.org/) >= 11.x
 
 ## Examples
 
 - Nextjs v12 - [Source](./examples/nextv12/README.md)
+- Nextjs v11.1 - [Source](./examples/nextv11_1/README.md)
+- Nextjs v11.0 - [Source](./examples/nextv11_0/README.md)
 - Tailwindcss - [Source](./examples/with-tailwindcss/README.md)
 
 ## Getting Started

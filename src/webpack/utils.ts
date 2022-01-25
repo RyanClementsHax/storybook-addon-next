@@ -79,7 +79,7 @@ export const configureStaticImageImport = (baseConfig: WebpackConfig): void => {
         test: rule.test,
         use: [
           {
-            loader: path.resolve(__dirname, '../images/next-image-loader-stub'),
+            loader: require.resolve('../images/next-image-loader-stub'),
             options: {
               filename: rule.generator?.filename
             }
@@ -128,7 +128,7 @@ const addScopedAlias = (
 
 const getRouterContextPath = () => {
   const version = getNextjsVersion()
-  if (semver.gte(version, '12.0.0')) {
+  if (semver.gte(version, '11.1.0')) {
     return 'next/dist/shared/lib/router-context'
   } else {
     return 'next/dist/next-server/lib/router-context'
