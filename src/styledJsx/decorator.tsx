@@ -4,10 +4,10 @@ import { Fragment } from 'react'
 let StyleRegistry: React.FC
 
 try {
-  // next v12
+  // next >= v12
   StyleRegistry = require('styled-jsx').StyleRegistry
 } catch {
-  // next v11
+  // next < v12
   StyleRegistry = Fragment
 }
 

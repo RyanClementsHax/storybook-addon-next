@@ -64,6 +64,7 @@
     "husky": "^7.0.4",
     "lint-staged": "^12.1.2",
     "next": "^12.0.7",
+    "nextv9": "npm:next@9.0.0",
     "nextv10": "npm:next@10.0.0",
     "nextv11": "npm:next@11.0.0",
     "prettier": "^2.5.1",
@@ -75,7 +76,10 @@
     "webpack": "^5.65.0"
   },
   "peerDependencies": {
-    "@storybook/react": "^6.0.0",
-    "next": "^11.0.0 || ^12.0.0"
+    "@storybook/addons": "^6.0.0",
+    "@storybook/addon-actions": "^6.0.0",
+    "next": "^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0",
+    "react": "^16.8.0 || ^17.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0"
   }
 }

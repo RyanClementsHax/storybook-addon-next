@@ -3,8 +3,10 @@
 import { RouterContext as RouterContextV12 } from 'next/dist/shared/lib/router-context'
 import { RouterContext as RouterContextV11 } from 'nextv11/dist/next-server/lib/router-context'
 import { RouterContext as RouterContextV10 } from 'nextv10/dist/next-server/lib/router-context'
+import { RouterContext as RouterContextV9 } from 'next-server/dist/lib/router-context'
 
 export const RouterContext:
   | typeof RouterContextV12
   | typeof RouterContextV11
-  | typeof RouterContextV10 = RouterContextV12
+  | typeof RouterContextV10
+  | typeof RouterContextV9 = RouterContextV12
