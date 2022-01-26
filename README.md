@@ -58,7 +58,7 @@
 ## Required Versions
 
 - [Storybook](https://storybook.js.org/) >= 6.x
-- [Next.js](https://nextjs.org/) >= 10.x
+- [Next.js](https://nextjs.org/) >= 9.x
 
 ## Examples
 
@@ -67,6 +67,7 @@
 - Nextjs v11.1 - [Source](./examples/nextv11_1/README.md)
 - Nextjs v11.0 - [Source](./examples/nextv11_0/README.md)
 - Nextjs v10 - [Source](./examples/nextv10/README.md)
+- Nextjs v9 - [Source](./examples/nextv9/README.md)
 
 ## Getting Started
 

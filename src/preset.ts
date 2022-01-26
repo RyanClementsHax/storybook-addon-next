@@ -2,13 +2,13 @@
 
 import { StorybookConfig } from '@storybook/core-common'
 import { TransformOptions } from '@babel/core'
-import {
-  configureCss,
-  configureModuleAliases,
-  configureRootAbsoluteImport,
-  configureStaticImageImport,
-  resolveNextConfig
-} from './webpack/utils'
+import { resolveNextConfig } from './utils'
+import { configureCss } from './css/webpack'
+import { configureAbsoluteImports } from './absoluteImports/webpack'
+import { configureRouting } from './routing/webpack'
+import { configureStyledJsx } from './styledJsx/webpack'
+import { configureStyledJsxTransforms } from './styledJsx/babel'
+import { configureImages } from './images/webpack'
 
 export const config: StorybookConfig['config'] = (entry = []) => [
   ...entry,
@@ -20,19 +20,18 @@ export const managerEntries = (entry: string[] = []): string[] => [
   require.resolve('./register')
 ]
 
-export const babel = (config: TransformOptions): TransformOptions => ({
-  ...config,
-  plugins: [...(config.plugins ?? []), 'styled-jsx/babel']
-})
+export const babel = (config: TransformOptions): TransformOptions =>
+  configureStyledJsxTransforms(config)
 
 export const webpackFinal: StorybookConfig['webpackFinal'] =
   async baseConfig => {
     const nextConfig = await resolveNextConfig(baseConfig)
 
-    configureRootAbsoluteImport(baseConfig)
+    configureAbsoluteImports(baseConfig)
     configureCss(baseConfig, nextConfig)
-    configureStaticImageImport(baseConfig)
-    configureModuleAliases(baseConfig)
+    configureImages(baseConfig)
+    configureRouting(baseConfig)
+    configureStyledJsx(baseConfig)
 
     return baseConfig
   }
