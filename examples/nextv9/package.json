@@ -10,7 +10,7 @@
     "build-storybook": "build-storybook -s public"
   },
   "dependencies": {
-    "next": "^9.0.0",
+    "next": "^11.1.3",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
     "sass": "^1.49.0"
