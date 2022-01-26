@@ -13,14 +13,6 @@ jobs:
       - name: restore dependencies
         uses: bahmutov/npm-install@v1
       - run: yarn lint:all
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout
-        uses: actions/checkout@v2
-      - name: restore dependencies
-        uses: bahmutov/npm-install@v1
-      - run: yarn test
   type_check:
     name: type check
     runs-on: ubuntu-latest
