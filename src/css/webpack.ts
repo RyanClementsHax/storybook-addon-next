@@ -1,4 +1,5 @@
 import { NextConfig } from 'next'
+import { getCssModuleLocalIdent } from 'next/dist/build/webpack/config/blocks/css/loaders/getCssModuleLocalIdent'
 import { Configuration as WebpackConfig } from 'webpack'
 
 export const configureCss = (
@@ -19,7 +20,7 @@ export const configureCss = (
           {
             loader: 'css-loader',
             options: {
-              modules: { auto: true }
+              modules: { auto: true, getLocalIdent: getCssModuleLocalIdent }
             }
           },
           'postcss-loader'
@@ -34,7 +35,7 @@ export const configureCss = (
       {
         loader: 'css-loader',
         options: {
-          modules: { auto: true }
+          modules: { auto: true, getLocalIdent: getCssModuleLocalIdent}
         }
       },
       'postcss-loader',
