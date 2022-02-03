@@ -27,6 +27,9 @@ export const Links = () => (
       <Link href="/absoluteImports">Absolute Import Example</Link>
     </li>
     <li>
+      <Link href="/customFonts">Custom Font Example</Link>
+    </li>
+    <li>
       <Link href="/typescript">Typescript Example</Link>
     </li>
   </ul>
