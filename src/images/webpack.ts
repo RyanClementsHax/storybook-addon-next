@@ -1,5 +1,5 @@
 import semver from 'semver'
-import { Configuration as WebpackConfig } from 'webpack'
+import { Configuration as WebpackConfig, RuleSetRule } from 'webpack'
 import { addScopedAlias, getNextjsVersion } from '../utils'
 
 export const configureImages = (baseConfig: WebpackConfig): void => {
@@ -12,23 +12,23 @@ const configureStaticImageImport = (baseConfig: WebpackConfig): void => {
   if (semver.lt(version, '11.0.0')) return
 
   const rules = baseConfig.module?.rules
-  rules?.forEach((rule, i) => {
-    if (
+  const assetRule = rules?.find(
+    rule =>
       typeof rule !== 'string' &&
       rule.test instanceof RegExp &&
       rule.test.test('test.jpg')
-    ) {
-      rules[i] = {
-        test: rule.test,
-        use: [
-          {
-            loader: require.resolve('./next-image-loader-stub'),
-            options: {
-              filename: rule.generator?.filename
-            }
-          }
-        ]
+  ) as RuleSetRule
+  assetRule.test = /\.(apng|eot|otf|ttf|woff|woff2|cur|ani|pdf)(\?.*)?$/
+  rules?.push({
+    test: /\.(png|jpg|jpeg|gif|webp|avif|ico|bmp|svg)$/i,
+    issuer: { not: /\.(css|scss|sass)$/ },
+    use: [
+      {
+        loader: require.resolve('./next-image-loader-stub'),
+        options: {
+          filename: assetRule.generator?.filename
+        }
       }
-    }
+    ]
   })
 }

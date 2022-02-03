@@ -14,6 +14,7 @@ export default function Home() {
           Click on any one of these links to see supported features in action
         </h1>
         <Links />
+        <p className="icons"> </p>
       </main>
     </div>
   )

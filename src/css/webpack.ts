@@ -20,7 +20,22 @@ export const configureCss = (
           {
             loader: 'css-loader',
             options: {
-              modules: { auto: true, getLocalIdent: getCssModuleLocalIdent }
+              // this is what nextjs is doing
+              // https://github.com/vercel/next.js/blob/b7725133f867b5e530dd4bb5d1fd8d5d389e3364/packages/next/build/webpack/config/blocks/css/loaders/global.ts#L32
+              // https://github.com/vercel/next.js/blob/b7725133f867b5e530dd4bb5d1fd8d5d389e3364/packages/next/build/webpack/config/blocks/css/loaders/file-resolve.ts
+              url: (url: string) => {
+                if (url.startsWith('/')) {
+                  return false
+                }
+                if (/^[a-z][a-z0-9+.-]*:/i.test(url)) {
+                  return false
+                }
+                return true
+              },
+              modules: {
+                auto: true,
+                getLocalIdent: getCssModuleLocalIdent
+              }
             }
           },
           'postcss-loader'
@@ -35,7 +50,7 @@ export const configureCss = (
       {
         loader: 'css-loader',
         options: {
-          modules: { auto: true, getLocalIdent: getCssModuleLocalIdent}
+          modules: { auto: true, getLocalIdent: getCssModuleLocalIdent }
         }
       },
       'postcss-loader',
