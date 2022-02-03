@@ -1,4 +1,4 @@
-import { Links } from 'components/Links'
+import { Header } from 'components/Header'
 import Head from 'next/head'
 
 export default function CssModules() {
@@ -8,11 +8,13 @@ export default function CssModules() {
         <title>Global style imports</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Links />
+      <Header />
       <main>
-        The background of this page is set by "styles/globals.scss" and this
-        text size is set by "styles/globals.css". All global style imports need
-        to be done in ".storybook/preview.js" for storybook.
+        <p>
+          The background of this page is set by "styles/globals.scss" and this
+          text size is set by "styles/globals.css". All global style imports
+          need to be done in ".storybook/preview.js" for storybook.
+        </p>
       </main>
     </div>
   )
