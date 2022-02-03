@@ -7,7 +7,8 @@
     "start": "next start",
     "lint": "next lint",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "serve-storybook": "serve storybook-static"
   },
   "dependencies": {
     "next": "^12.0.9",
@@ -24,9 +25,7 @@
     "@storybook/manager-webpack5": "^6.4.9",
     "@storybook/react": "^6.4.9",
     "babel-loader": "^8.2.3",
-    "eslint": "^8.6.0",
-    "eslint-config-next": "^12.0.7",
-    "eslint-plugin-storybook": "^0.5.5",
+    "serve": "^13.0.2",
     "storybook-addon-next": "link:../../"
   }
 }

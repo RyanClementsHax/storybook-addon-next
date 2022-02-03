@@ -31,4 +31,12 @@ const configureStaticImageImport = (baseConfig: WebpackConfig): void => {
       }
     ]
   })
+  rules?.push({
+    test: /\.(png|jpg|jpeg|gif|webp|avif|ico|bmp|svg)$/i,
+    issuer: /\.(css|scss|sass)$/,
+    type: 'asset/resource',
+    generator: {
+      filename: assetRule.generator?.filename
+    }
+  })
 }

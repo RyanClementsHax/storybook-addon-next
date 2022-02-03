@@ -1,5 +1,6 @@
 import { NextConfig } from 'next'
 import { getCssModuleLocalIdent } from 'next/dist/build/webpack/config/blocks/css/loaders/getCssModuleLocalIdent'
+import { cssFileResolve } from 'next/dist/build/webpack/config/blocks/css/loaders/file-resolve'
 import { Configuration as WebpackConfig } from 'webpack'
 
 export const configureCss = (
@@ -20,18 +21,18 @@ export const configureCss = (
           {
             loader: 'css-loader',
             options: {
-              // this is what nextjs is doing
-              // https://github.com/vercel/next.js/blob/b7725133f867b5e530dd4bb5d1fd8d5d389e3364/packages/next/build/webpack/config/blocks/css/loaders/global.ts#L32
-              // https://github.com/vercel/next.js/blob/b7725133f867b5e530dd4bb5d1fd8d5d389e3364/packages/next/build/webpack/config/blocks/css/loaders/file-resolve.ts
-              url: (url: string) => {
-                if (url.startsWith('/')) {
-                  return false
-                }
-                if (/^[a-z][a-z0-9+.-]*:/i.test(url)) {
-                  return false
-                }
-                return true
-              },
+              url: (url: string, resourcePath: string) =>
+                cssFileResolve(
+                  url,
+                  resourcePath,
+                  nextConfig.experimental?.urlImports
+                ),
+              import: (url: string, _: unknown, resourcePath: string) =>
+                cssFileResolve(
+                  url,
+                  resourcePath,
+                  nextConfig.experimental?.urlImports
+                ),
               modules: {
                 auto: true,
                 getLocalIdent: getCssModuleLocalIdent
@@ -50,6 +51,18 @@ export const configureCss = (
       {
         loader: 'css-loader',
         options: {
+          url: (url: string, resourcePath: string) =>
+            cssFileResolve(
+              url,
+              resourcePath,
+              nextConfig.experimental?.urlImports
+            ),
+          import: (url: string, _: unknown, resourcePath: string) =>
+            cssFileResolve(
+              url,
+              resourcePath,
+              nextConfig.experimental?.urlImports
+            ),
           modules: { auto: true, getLocalIdent: getCssModuleLocalIdent }
         }
       },
