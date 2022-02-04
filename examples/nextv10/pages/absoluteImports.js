@@ -1,4 +1,4 @@
-import { Links } from 'components/Links'
+import { Header } from 'components/Header'
 import { MyComponent } from 'components/MyComponent'
 import Head from 'next/head'
 
@@ -9,9 +9,9 @@ export default function AbsoluteImports() {
         <title>Absolute Imports</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Links />
+      <Header />
       <main>
-        This uses an absolute import:{' '}
+        <p>This uses an absolute import:</p>
         <MyComponent>Im absolutely imported</MyComponent>
       </main>
     </div>

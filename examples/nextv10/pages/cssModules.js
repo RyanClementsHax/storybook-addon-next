@@ -1,4 +1,4 @@
-import { Links } from 'components/Links'
+import { Header } from 'components/Header'
 import Head from 'next/head'
 import styles from '../styles/CssModules.module.css'
 
@@ -9,9 +9,9 @@ export default function CssModules() {
         <title>CSS Modules</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Links />
+      <Header />
       <main className={styles.main}>
-        <span>This is styled using CSS Modules</span>
+        <p>This is styled using CSS Modules</p>
       </main>
     </div>
   )

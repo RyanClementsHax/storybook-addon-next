@@ -1,4 +1,4 @@
-import { Links } from 'components/Links'
+import { Header } from 'components/Header'
 import Image from 'next/image'
 import Head from 'next/head'
 
@@ -9,9 +9,9 @@ export default function NextjsImages() {
         <title>Nextjs Images</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Links />
+      <Header />
       <main>
-        <h2>This image uses a remote image</h2>
+        <p>This image uses a remote image</p>
         <Image src="/vercel.svg" alt="Vercel Logo" width={200} height={200} />
       </main>
     </div>

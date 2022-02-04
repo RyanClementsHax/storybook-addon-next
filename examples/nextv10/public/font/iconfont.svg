@@ -1,0 +1,14 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>Copyright (C) 2022 by original authors @ fontello.com</metadata>
+<defs>
+<font id="iconfont" horiz-adv-x="1000" >
+<font-face font-family="iconfont" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
+<missing-glyph horiz-adv-x="1000" />
+<glyph glyph-name="thumbs-up-alt" unicode="&#xf164;" d="M143 100q0 15-11 25t-25 11q-15 0-25-11t-11-25q0-15 11-25t25-11q15 0 25 11t11 25z m89 286v-357q0-15-10-25t-26-11h-160q-15 0-25 11t-11 25v357q0 14 11 25t25 10h160q15 0 26-10t10-25z m661 0q0-48-31-83 9-25 9-43 1-42-24-76 9-31 0-66-9-31-31-52 5-62-27-101-36-43-110-44h-72q-37 0-80 9t-68 16-67 22q-69 24-88 25-15 0-25 11t-11 25v357q0 14 10 25t24 11q13 1 42 33t57 67q38 49 56 67 10 10 17 27t10 27 8 34q4 22 7 34t11 29 19 28q10 11 25 11 25 0 46-6t33-15 22-22 14-25 7-28 2-25 1-22q0-21-6-43t-10-33-16-31q-1-4-5-10t-6-13-5-13h155q43 0 75-32t32-75z" horiz-adv-x="928.6" />
+
+<glyph glyph-name="eyedropper" unicode="&#xf1fb;" d="M948 798q52-53 52-127t-52-126l-126-124 58-58q6-6 6-13t-6-13l-117-117q-6-6-13-6t-13 6l-58 59-337-337q-21-21-50-21h-113l-143-71-36 36 71 143v113q0 29 21 50l337 337-59 58q-6 6-6 13t6 13l117 117q6 6 13 6t13-6l58-58 124 126q52 52 126 52t127-52z m-662-769l321 321-107 107-321-321v-107h107z" horiz-adv-x="1000" />
+</font>
+</defs>
+</svg>

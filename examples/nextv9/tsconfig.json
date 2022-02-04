@@ -3,7 +3,6 @@
     "target": "es5",
     "module": "esnext",
     "moduleResolution": "node",
-    "incremental": true,
     "isolatedModules": true,
     "esModuleInterop": true,
     "skipLibCheck": true,

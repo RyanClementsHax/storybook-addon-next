@@ -1,4 +1,4 @@
-import { Links } from 'components/Links'
+import { Header } from 'components/Header'
 import Head from 'next/head'
 
 export default function StyledJsx() {
@@ -8,23 +8,14 @@ export default function StyledJsx() {
         <title>Styled JSX</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Links />
+      <Header />
       <style jsx>{`
-        .main {
-          padding: 4rem 0;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-
-        .main span {
+        .main p {
           color: blue;
         }
       `}</style>
       <main className="main">
-        <span>This is styled using Styled JSX</span>
+        <p>This is styled using Styled JSX</p>
       </main>
     </div>
   )

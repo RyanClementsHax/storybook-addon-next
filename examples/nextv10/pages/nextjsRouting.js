@@ -1,4 +1,4 @@
-import { Links } from 'components/Links'
+import { Header } from 'components/Header'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 
@@ -11,7 +11,7 @@ export default function NextjsRouting() {
         <title>Nextjs Routing</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Links />
+      <Header />
       <main>
         <p>
           Interact with any of the links and look at the "Actions" tab below (if

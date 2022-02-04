@@ -1,5 +1,6 @@
 import { NextConfig } from 'next'
 import { getCssModuleLocalIdent } from 'next/dist/build/webpack/config/blocks/css/loaders/getCssModuleLocalIdent'
+import { cssFileResolve } from 'next/dist/build/webpack/config/blocks/css/loaders/file-resolve'
 import { Configuration as WebpackConfig } from 'webpack'
 
 export const configureCss = (
@@ -20,7 +21,22 @@ export const configureCss = (
           {
             loader: 'css-loader',
             options: {
-              modules: { auto: true, getLocalIdent: getCssModuleLocalIdent }
+              url: (url: string, resourcePath: string) =>
+                cssFileResolve(
+                  url,
+                  resourcePath,
+                  nextConfig.experimental?.urlImports
+                ),
+              import: (url: string, _: unknown, resourcePath: string) =>
+                cssFileResolve(
+                  url,
+                  resourcePath,
+                  nextConfig.experimental?.urlImports
+                ),
+              modules: {
+                auto: true,
+                getLocalIdent: getCssModuleLocalIdent
+              }
             }
           },
           'postcss-loader'
@@ -35,7 +51,19 @@ export const configureCss = (
       {
         loader: 'css-loader',
         options: {
-          modules: { auto: true, getLocalIdent: getCssModuleLocalIdent}
+          url: (url: string, resourcePath: string) =>
+            cssFileResolve(
+              url,
+              resourcePath,
+              nextConfig.experimental?.urlImports
+            ),
+          import: (url: string, _: unknown, resourcePath: string) =>
+            cssFileResolve(
+              url,
+              resourcePath,
+              nextConfig.experimental?.urlImports
+            ),
+          modules: { auto: true, getLocalIdent: getCssModuleLocalIdent }
         }
       },
       'postcss-loader',
