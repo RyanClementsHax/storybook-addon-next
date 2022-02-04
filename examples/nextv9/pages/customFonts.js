@@ -1,17 +1,17 @@
 import { Header } from 'components/Header'
 import Head from 'next/head'
-import styles from '../styles/CssModules.module.css'
 
-export default function CssModules() {
+export default function Home() {
   return (
     <div>
       <Head>
-        <title>CSS Modules</title>
+        <title>Custom Fonts</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <main className={styles.main}>
-        <p>This is styled using CSS Modules</p>
+      <main>
+        <p>This uses a custom font 👇</p>
+        <p className="icons"> </p>
       </main>
     </div>
   )
