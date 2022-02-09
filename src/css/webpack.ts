@@ -21,15 +21,20 @@ export const configureCss = (
           {
             loader: 'css-loader',
             options: {
+              importLoaders: 1,
               url: (url: string, resourcePath: string) =>
                 cssFileResolve(
                   url,
                   resourcePath,
                   nextConfig.experimental?.urlImports
                 ),
-              import: (url: string, _: unknown, resourcePath: string) =>
+              import: (
+                url: string | { url: string; media: string },
+                _: string,
+                resourcePath: string
+              ) =>
                 cssFileResolve(
-                  url,
+                  typeof url === 'string' ? url : url.url,
                   resourcePath,
                   nextConfig.experimental?.urlImports
                 ),
@@ -51,15 +56,20 @@ export const configureCss = (
       {
         loader: 'css-loader',
         options: {
+          importLoaders: 3,
           url: (url: string, resourcePath: string) =>
             cssFileResolve(
               url,
               resourcePath,
               nextConfig.experimental?.urlImports
             ),
-          import: (url: string, _: unknown, resourcePath: string) =>
+          import: (
+            url: string | { url: string; media: string },
+            _: string,
+            resourcePath: string
+          ) =>
             cssFileResolve(
-              url,
+              typeof url === 'string' ? url : url.url,
               resourcePath,
               nextConfig.experimental?.urlImports
             ),
@@ -71,6 +81,7 @@ export const configureCss = (
       {
         loader: 'sass-loader',
         options: {
+          sourceMap: true,
           sassOptions: nextConfig.sassOptions,
           additionalData:
             nextConfig.sassOptions?.prependData ||
