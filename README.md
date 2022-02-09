@@ -10,7 +10,7 @@
 ## Table of Contents <!-- omit in toc -->
 
 - [Supported Features](#supported-features)
-- [Required Versions](#required-versions)
+- [Requirements](#requirements)
 - [Examples](#examples)
 - [Getting Started](#getting-started)
   - [Installation](#installation)
@@ -55,10 +55,14 @@
 
 👉 [Typescript](#typescript) (already supported out of the box by Storybook)
 
-## Required Versions
+## Requirements
 
-- [Storybook](https://storybook.js.org/) >= 6.x
 - [Next.js](https://nextjs.org/) >= 9.x
+- [Storybook](https://storybook.js.org/) >= 6.x
+  - Storybook webpack 5 builder
+    - [Intro](https://storybook.js.org/blog/storybook-for-webpack-5/)
+    - [Installation guide](https://gist.github.com/shilman/8856ea1786dcd247139b47b270912324)
+    - It's not that this plugin can't support the webpack 4 builder, it's just that there hasn't been much of a need to and this is what Storybook recommends for nextjs apps. If you feel that you have a good use case, feel free to [open up an issue](https://github.com/RyanClementsHax/storybook-addon-next/issues).
 
 ## Examples
 
