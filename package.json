@@ -42,14 +42,12 @@
   },
   "dependencies": {
     "@storybook/addons": "^6.4.10",
-    "css-loader": "^6.5.1",
     "image-size": "^1.0.0",
     "loader-utils": "^3.2.0",
     "postcss-loader": "^6.2.1",
     "resolve-url-loader": "^5.0.0",
     "sass-loader": "^12.4.0",
-    "semver": "^7.3.5",
-    "style-loader": "^3.3.1"
+    "semver": "^7.3.5"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^6.4.13",
@@ -68,9 +66,9 @@
     "husky": "^7.0.4",
     "lint-staged": "^12.1.2",
     "next": "^12.0.7",
-    "nextv9": "npm:next@9.0.0",
     "nextv10": "npm:next@10.0.0",
     "nextv11": "npm:next@11.0.0",
+    "nextv9": "npm:next@9.0.0",
     "prettier": "^2.5.1",
     "react": "^17.0.2",
     "semantic-release": "^18.0.1",
@@ -80,8 +78,8 @@
     "webpack": "^5.65.0"
   },
   "peerDependencies": {
-    "@storybook/addons": "^6.0.0",
     "@storybook/addon-actions": "^6.0.0",
+    "@storybook/addons": "^6.0.0",
     "next": "^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0",
     "react": "^16.8.0 || ^17.0.0",
     "react-dom": "^16.8.0 || ^17.0.0"
