@@ -5,7 +5,7 @@ import { NextConfig } from 'next'
 
 export const getNextjsVersion = (): string =>
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  require(path.resolve('node_modules/next/package.json')).version
+  require('next/package.json').version
 
 export const resolveNextConfig = async (
   baseConfig: WebpackConfig
@@ -27,7 +27,7 @@ export const addScopedAlias = (
   if (!baseConfig.resolve.alias) baseConfig.resolve.alias = {}
   const aliasConfig = baseConfig.resolve.alias
 
-  const scopedAlias = path.resolve(`node_modules/${alias ?? name}`)
+  const scopedAlias = require.resolve(`${alias ?? name}`)
   if (Array.isArray(aliasConfig)) {
     aliasConfig.push({
       name,

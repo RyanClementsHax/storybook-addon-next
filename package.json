@@ -38,7 +38,8 @@
     "test:all": "yarn lint:all && yarn type-check",
     "prepare": "husky install",
     "prepublishOnly": "yarn build",
-    "release": "semantic-release"
+    "release": "semantic-release",
+    "prepack": "yarn build"
   },
   "dependencies": {
     "@storybook/addons": "^6.4.10",
