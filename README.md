@@ -33,6 +33,8 @@
   - [Postcss](#postcss)
   - [Absolute Imports](#absolute-imports)
   - [Typescript](#typescript)
+  - [FAQ](#faq)
+    - [Statically imported images won't load](#statically-imported-images-wont-load)
 - [Similar Projects](#similar-projects)
 - [Want to suggest additional features?](#want-to-suggest-additional-features)
 - [Didn't find what you were looking for?](#didnt-find-what-you-were-looking-for)
@@ -309,7 +311,7 @@ export const parameters = {
 import '../styles/globals.scss'
 ```
 
-This will automatically include any of your [custom sass configurations](https://nextjs.org/docs/basic-features/built-in-css-support#customizing-sass-options) in your next.config.js file.
+This will automatically include any of your [custom sass configurations](https://nextjs.org/docs/basic-features/built-in-css-support#customizing-sass-options) in your `next.config.js` file.
 
 ```js
 const path = require('path')
@@ -416,6 +418,27 @@ import 'styles/globals.scss'
 ### Typescript
 
 There is no special thing this addon does to support [Typescript](https://www.typescriptlang.org/) because Storybook already supports it out of the box. I just listed it in the [supported features](#supported-features) for completeness and not to confuse anyone comparing the list of "out of the box" [features](https://nextjs.org/docs/getting-started) Next.js has with this addon.
+
+### FAQ
+
+#### Statically imported images won't load
+
+Make sure you are treating image imports the same way you treat them when using next image in normal development.
+
+Before `storybook-addon-next`, image imports just imported the raw path to the image (e.g. `'static/media/stories/assets/plugin.svg'`). When using `storybook-addon-next` image imports work the "Next.js way" meaning that we now get an object when we import an image. For example:
+
+```json
+{
+  "src": "static/media/stories/assets/plugin.svg",
+  "height": 48,
+  "width": 48,
+  "blurDataURL": "static/media/stories/assets/plugin.svg"
+}
+```
+
+Therefore, if something in storybook isn't showing the image properly, make sure you expect the object to be returned from an import instead of just the asset path.
+
+See [local images](https://nextjs.org/docs/basic-features/image-optimization#local-images) for more detail on how Next.js treats static image imports.
 
 ## Similar Projects
 
