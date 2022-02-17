@@ -33,8 +33,10 @@
   - [Postcss](#postcss)
   - [Absolute Imports](#absolute-imports)
   - [Typescript](#typescript)
+  - [next.config.js](#nextconfigjs)
   - [FAQ](#faq)
     - [Statically imported images won't load](#statically-imported-images-wont-load)
+    - [This addon breaks when the .mjs extension for the next config is used](#this-addon-breaks-when-the-mjs-extension-for-the-next-config-is-used)
 - [Similar Projects](#similar-projects)
 - [Want to suggest additional features?](#want-to-suggest-additional-features)
 - [Didn't find what you were looking for?](#didnt-find-what-you-were-looking-for)
@@ -65,6 +67,8 @@
     - [Intro](https://storybook.js.org/blog/storybook-for-webpack-5/)
     - [Installation guide](https://gist.github.com/shilman/8856ea1786dcd247139b47b270912324)
     - It's not that this plugin can't support the webpack 4 builder, it's just that there hasn't been much of a need to and this is what Storybook recommends for nextjs apps. If you feel that you have a good use case, feel free to [open up an issue](https://github.com/RyanClementsHax/storybook-addon-next/issues).
+- Your Next.js config file uses the `.js` extension and not the `.mjs` extension (i.e. `next.config.js` not `next.config.mjs`)
+  - See [next.config.js](#nextconfigjs) for more details
 
 ## Examples
 
@@ -313,6 +317,8 @@ import '../styles/globals.scss'
 
 This will automatically include any of your [custom sass configurations](https://nextjs.org/docs/basic-features/built-in-css-support#customizing-sass-options) in your `next.config.js` file.
 
+> Right now only the `.js` extension of the Next.js config is supported, not `.mjs`. See [next.config.js](#nextconfigjs) for more details.
+
 ```js
 const path = require('path')
 
@@ -419,6 +425,10 @@ import 'styles/globals.scss'
 
 There is no special thing this addon does to support [Typescript](https://www.typescriptlang.org/) because Storybook already supports it out of the box. I just listed it in the [supported features](#supported-features) for completeness and not to confuse anyone comparing the list of "out of the box" [features](https://nextjs.org/docs/getting-started) Next.js has with this addon.
 
+### next.config.js
+
+Right now the only supported config format for Next.js that this plugin supports is the commonjs version of the config (i.e. `next.config.js`). This is mostly because I haven't figured out how to require a `.mjs` file from a storybook addon (which is bound to commonjs modules as far as I know right now). If you are able to help, I'd love it if you could contribute to [this discussion](https://github.com/RyanClementsHax/storybook-addon-next/discussions/28) to get support for the `.mjs` version if such support is even possible.
+
 ### FAQ
 
 #### Statically imported images won't load
@@ -439,6 +449,10 @@ Before `storybook-addon-next`, image imports just imported the raw path to the i
 Therefore, if something in storybook isn't showing the image properly, make sure you expect the object to be returned from an import instead of just the asset path.
 
 See [local images](https://nextjs.org/docs/basic-features/image-optimization#local-images) for more detail on how Next.js treats static image imports.
+
+#### This addon breaks when the .mjs extension for the next config is used
+
+Right now using `next.config.mjs` isn't supported by this addon. See [next.config.js](#nextconfigjs) for more details. Right now, it is required for you to use the `.js` extension instead. Feel free to help out on [this discussion](https://github.com/RyanClementsHax/storybook-addon-next/discussions/28) to get this supported.
 
 ## Similar Projects
 
