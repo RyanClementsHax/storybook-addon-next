@@ -8,9 +8,15 @@ export const getNextjsVersion = (): string =>
   require(scopedResolve('next/package.json')).version
 
 export const resolveNextConfig = async (
-  baseConfig: WebpackConfig
+  baseConfig: WebpackConfig,
+  configDir: string,
+  nextConfigPath?: string
 ): Promise<NextConfig> => {
-  const nextConfigExport = await import(path.resolve('next.config.js'))
+  const nextConfigExport = await import(
+    nextConfigPath
+      ? path.join(configDir, nextConfigPath)
+      : path.resolve('next.config.js')
+  )
   return typeof nextConfigExport === 'function'
     ? nextConfigExport(PHASE_DEVELOPMENT_SERVER, { defaultConfig: baseConfig })
     : nextConfigExport
