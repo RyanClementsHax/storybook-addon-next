@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "projects": {
+    "next-app": "apps/next-app",
+    "next-app-e2e": "apps/next-app-e2e",
+    "shared-ui-atoms": "libs/shared/ui/atoms"
+  }
+}
