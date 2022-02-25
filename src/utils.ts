@@ -9,13 +9,10 @@ export const getNextjsVersion = (): string =>
 
 export const resolveNextConfig = async (
   baseConfig: WebpackConfig,
-  configDir: string,
   nextConfigPath?: string
 ): Promise<NextConfig> => {
   const nextConfigExport = await import(
-    nextConfigPath
-      ? path.join(configDir, nextConfigPath)
-      : path.resolve('next.config.js')
+    nextConfigPath ? nextConfigPath : path.resolve('next.config.js')
   )
   return typeof nextConfigExport === 'function'
     ? nextConfigExport(PHASE_DEVELOPMENT_SERVER, { defaultConfig: baseConfig })

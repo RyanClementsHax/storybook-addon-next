@@ -130,6 +130,7 @@ For example:
 
 ```js
 // .storybook/main.js
+const path = require('path')
 
 module.exports = {
   // other config ommited for brevity
@@ -138,7 +139,7 @@ module.exports = {
     {
       name: 'storybook-addon-next',
       options: {
-        nextConfigPath: '../next.config.js'
+        nextConfigPath: path.resolve(__dirname, '../next.config.js')
       }
     }
     // ...
@@ -146,7 +147,7 @@ module.exports = {
 }
 ```
 
-- `nextConfigPath`: The path to the `next.config.js` file relative to the `.storybook/main.js` file
+- `nextConfigPath`: The absolute path to the `next.config.js`
 
 ### Next.js's Image Component
 

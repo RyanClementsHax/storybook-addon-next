@@ -28,12 +28,8 @@ export const webpackFinal: StorybookConfig['webpackFinal'] = async (
   baseConfig,
   options
 ) => {
-  const addonOptions = options as AddonOptions
-  const nextConfig = await resolveNextConfig(
-    baseConfig,
-    options.configDir,
-    addonOptions.nextConfigPath
-  )
+  const { nextConfigPath } = options as AddonOptions
+  const nextConfig = await resolveNextConfig(baseConfig, nextConfigPath)
 
   configureAbsoluteImports(baseConfig)
   configureCss(baseConfig, nextConfig)

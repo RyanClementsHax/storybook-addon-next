@@ -1,10 +1,5 @@
 const path = require('path');
 
-// NOTE: this is main preset for storybook. This conf is used in examples/with-nx/libs/shared/ui/atoms/.storybook/main.js
-console.log({
-  path: path.resolve(__dirname, '../apps/next-app/next.config.js'),
-});
-
 module.exports = {
   stories: [],
   addons: [
