@@ -17,6 +17,7 @@
   - [Register the Addon in main.js](#register-the-addon-in-mainjs)
   - [Partay](#partay)
 - [Documentation](#documentation)
+  - [Options](#options)
   - [Next.js's Image Component](#nextjss-image-component)
     - [Local Images](#local-images)
     - [Remote Images](#remote-images)
@@ -34,6 +35,7 @@
   - [Absolute Imports](#absolute-imports)
   - [Typescript](#typescript)
   - [next.config.js](#nextconfigjs)
+    - [ESM](#esm)
   - [FAQ](#faq)
     - [Statically imported images won't load](#statically-imported-images-wont-load)
     - [This addon breaks when the .mjs extension for the next config is used](#this-addon-breaks-when-the-mjs-extension-for-the-next-config-is-used)
@@ -98,8 +100,15 @@ npm install --save-dev storybook-addon-next
 ### Register the Addon in main.js
 
 ```js
+// .storybook/main.js
+
 module.exports = {
-  addons: ['storybook-addon-next']
+  // other config ommited for brevity
+  addons: [
+    // ...
+    'storybook-addon-next'
+    // ...
+  ]
 }
 ```
 
@@ -112,6 +121,33 @@ See [Documentation](#documentation) for more details on how the supported featur
 If something doesn't work as you would expect, feel free to [open up an issue](https://github.com/RyanClementsHax/storybook-addon-next/issues).
 
 ## Documentation
+
+### Options
+
+This addon can be passed an options object for addional configuration if needed.
+
+For example:
+
+```js
+// .storybook/main.js
+const path = require('path')
+
+module.exports = {
+  // other config ommited for brevity
+  addons: [
+    // ...
+    {
+      name: 'storybook-addon-next',
+      options: {
+        nextConfigPath: path.resolve(__dirname, '../next.config.js')
+      }
+    }
+    // ...
+  ]
+}
+```
+
+- `nextConfigPath`: The absolute path to the `next.config.js`
 
 ### Next.js's Image Component
 
@@ -426,6 +462,8 @@ import 'styles/globals.scss'
 There is no special thing this addon does to support [Typescript](https://www.typescriptlang.org/) because Storybook already supports it out of the box. I just listed it in the [supported features](#supported-features) for completeness and not to confuse anyone comparing the list of "out of the box" [features](https://nextjs.org/docs/getting-started) Next.js has with this addon.
 
 ### next.config.js
+
+#### ESM
 
 Right now the only supported config format for Next.js that this plugin supports is the commonjs version of the config (i.e. `next.config.js`). This is mostly because I haven't figured out how to require a `.mjs` file from a storybook addon (which is bound to commonjs modules as far as I know right now). If you are able to help, I'd love it if you could contribute to [this discussion](https://github.com/RyanClementsHax/storybook-addon-next/discussions/28) to get support for the `.mjs` version if such support is even possible.
 

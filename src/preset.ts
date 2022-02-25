@@ -9,6 +9,7 @@ import { configureRouting } from './routing/webpack'
 import { configureStyledJsx } from './styledJsx/webpack'
 import { configureStyledJsxTransforms } from './styledJsx/babel'
 import { configureImages } from './images/webpack'
+import { AddonOptions } from './types'
 
 export const config: StorybookConfig['config'] = (entry = []) => [
   ...entry,
@@ -23,15 +24,18 @@ export const managerEntries = (entry: string[] = []): string[] => [
 export const babel = (config: TransformOptions): TransformOptions =>
   configureStyledJsxTransforms(config)
 
-export const webpackFinal: StorybookConfig['webpackFinal'] =
-  async baseConfig => {
-    const nextConfig = await resolveNextConfig(baseConfig)
+export const webpackFinal: StorybookConfig['webpackFinal'] = async (
+  baseConfig,
+  options
+) => {
+  const { nextConfigPath } = options as AddonOptions
+  const nextConfig = await resolveNextConfig(baseConfig, nextConfigPath)
 
-    configureAbsoluteImports(baseConfig)
-    configureCss(baseConfig, nextConfig)
-    configureImages(baseConfig)
-    configureRouting(baseConfig)
-    configureStyledJsx(baseConfig)
+  configureAbsoluteImports(baseConfig)
+  configureCss(baseConfig, nextConfig)
+  configureImages(baseConfig)
+  configureRouting(baseConfig)
+  configureStyledJsx(baseConfig)
 
-    return baseConfig
-  }
+  return baseConfig
+}
