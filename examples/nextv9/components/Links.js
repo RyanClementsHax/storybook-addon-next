@@ -27,6 +27,9 @@ export const Links = () => (
       <Link href="/customFonts">Custom Font Example</Link>
     </li>
     <li>
+      <Link href="/runtimeConfiguration">Runtime Configuration Example</Link>
+    </li>
+    <li>
       <Link href="/typescript">Typescript Example</Link>
     </li>
   </ul>
