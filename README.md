@@ -33,6 +33,7 @@
   - [Styled JSX](#styled-jsx)
   - [Postcss](#postcss)
   - [Absolute Imports](#absolute-imports)
+  - [Runtime Config](#runtime-config)
   - [Typescript](#typescript)
   - [next.config.js](#nextconfigjs)
     - [ESM](#esm)
@@ -58,6 +59,8 @@
 👉 [Postcss](#postcss)
 
 👉 [Absolute Imports](#absolute-imports)
+
+👉 [Runtime Config](#runtime-config)
 
 👉 [Typescript](#typescript) (already supported out of the box by Storybook)
 
@@ -455,6 +458,40 @@ export default function HomePage() {
 import 'styles/globals.scss'
 
 // ...
+```
+
+### Runtime Config
+
+Next.js allows for [Runtime Configuration](https://nextjs.org/docs/api-reference/next.config.js/runtime-configuration) which lets you import a handy `getConfig` function to get certain configuration defined in your `next.config.js` file at runtime.
+
+In the context of Storybook with this addon, you can expect Next.js's [Runtime Configuration](https://nextjs.org/docs/api-reference/next.config.js/runtime-configuration) feature to work just fine.
+
+Note, because Storybook doesn't server render your components, your components will only see what they normally see on the client side (i.e. they won't see `serverRuntimeConfig` but will see `publicRuntimeConfig`).
+
+For example, consider the following Next.js config:
+
+```js
+// next.config.js
+module.exports = {
+  serverRuntimeConfig: {
+    mySecret: 'secret',
+    secondSecret: process.env.SECOND_SECRET // Pass through env variables
+  },
+  publicRuntimeConfig: {
+    staticFolder: '/static'
+  }
+}
+```
+
+Calls to `getConfig` would return the following object when called within Storybook:
+
+```json
+{
+  "serverRuntimeConfig": {},
+  "publicRuntimeConfig": {
+    "staticFolder": "/static"
+  }
+}
 ```
 
 ### Typescript
