@@ -1,23 +1,18 @@
 import path from 'path'
-import { Configuration as WebpackConfig } from 'webpack'
-import { PHASE_DEVELOPMENT_SERVER } from 'next/constants'
-import { NextConfig } from 'next'
+import { Configuration as WebpackConfig, DefinePlugin } from 'webpack'
+
+export const configureRuntimeNextjsVersionResolution = (
+  baseConfig: WebpackConfig
+): void =>
+  void baseConfig.plugins?.push(
+    new DefinePlugin({
+      'process.env.__NEXT_VERSION': JSON.stringify(getNextjsVersion())
+    })
+  )
 
 export const getNextjsVersion = (): string =>
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   require(scopedResolve('next/package.json')).version
-
-export const resolveNextConfig = async (
-  baseConfig: WebpackConfig,
-  nextConfigPath?: string
-): Promise<NextConfig> => {
-  const nextConfigExport = await import(
-    nextConfigPath ? nextConfigPath : path.resolve('next.config.js')
-  )
-  return typeof nextConfigExport === 'function'
-    ? nextConfigExport(PHASE_DEVELOPMENT_SERVER, { defaultConfig: baseConfig })
-    : nextConfigExport
-}
 
 // This is to help the addon in development
 // Without it, webpack resolves packages in its node_modules instead of the example's node_modules
@@ -57,7 +52,7 @@ export const addScopedAlias = (
  * // after main script path truncation
  * scopedResolve('styled-jsx') === '/some/path/node_modules/styled-jsx'
  */
-const scopedResolve = (id: string) => {
+export const scopedResolve = (id: string): string => {
   const scopedModulePath = require.resolve(id, { paths: [path.resolve()] })
   const moduleFolderStrPosition = scopedModulePath.lastIndexOf(id)
   const beginningOfMainScriptPath = moduleFolderStrPosition + id.length

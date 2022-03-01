@@ -2,13 +2,14 @@
 
 import { StorybookConfig } from '@storybook/core-common'
 import { TransformOptions } from '@babel/core'
-import { resolveNextConfig } from './utils'
+import { configureConfig } from './config/webpack'
 import { configureCss } from './css/webpack'
 import { configureAbsoluteImports } from './absoluteImports/webpack'
 import { configureRouting } from './routing/webpack'
 import { configureStyledJsx } from './styledJsx/webpack'
 import { configureStyledJsxTransforms } from './styledJsx/babel'
 import { configureImages } from './images/webpack'
+import { configureRuntimeNextjsVersionResolution } from './utils'
 import { AddonOptions } from './types'
 
 export const config: StorybookConfig['config'] = (entry = []) => [
@@ -29,8 +30,9 @@ export const webpackFinal: StorybookConfig['webpackFinal'] = async (
   options
 ) => {
   const { nextConfigPath } = options as AddonOptions
-  const nextConfig = await resolveNextConfig(baseConfig, nextConfigPath)
+  const nextConfig = await configureConfig(baseConfig, nextConfigPath)
 
+  configureRuntimeNextjsVersionResolution(baseConfig)
   configureAbsoluteImports(baseConfig)
   configureCss(baseConfig, nextConfig)
   configureImages(baseConfig)
