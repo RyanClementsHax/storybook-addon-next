@@ -1,3 +1,9 @@
 module.exports = {
-  reactStrictMode: true
+  reactStrictMode: true,
+  serverRuntimeConfig: {
+    mySecret: 'secret'
+  },
+  publicRuntimeConfig: {
+    message: 'notice how serverRuntimeConfig is empty'
+  }
 }
