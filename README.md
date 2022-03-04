@@ -37,9 +37,11 @@
   - [Typescript](#typescript)
   - [next.config.js](#nextconfigjs)
     - [ESM](#esm)
+  - [Notes for Yarn v2 and v3 users](#notes-for-yarn-v2-and-v3-users)
   - [FAQ](#faq)
     - [Statically imported images won't load](#statically-imported-images-wont-load)
     - [This addon breaks when the .mjs extension for the next config is used](#this-addon-breaks-when-the-mjs-extension-for-the-next-config-is-used)
+    - [Module not found: Error: Can't resolve [package name]](#module-not-found-error-cant-resolve-package-name)
 - [Similar Projects](#similar-projects)
 - [Want to suggest additional features?](#want-to-suggest-additional-features)
 - [Didn't find what you were looking for?](#didnt-find-what-you-were-looking-for)
@@ -504,6 +506,15 @@ There is no special thing this addon does to support [Typescript](https://www.ty
 
 Right now the only supported config format for Next.js that this plugin supports is the commonjs version of the config (i.e. `next.config.js`). This is mostly because I haven't figured out how to require a `.mjs` file from a storybook addon (which is bound to commonjs modules as far as I know right now). If you are able to help, I'd love it if you could contribute to [this discussion](https://github.com/RyanClementsHax/storybook-addon-next/discussions/28) to get support for the `.mjs` version if such support is even possible.
 
+### Notes for Yarn v2 and v3 users
+
+If you're using [Yarn](https://yarnpkg.com/) v2 or v3, you may run into issues where Storybook can't resolve `style-loader` or `css-loader`. For example, you might get errors like:
+
+`Module not found: Error: Can't resolve 'css-loader'`\
+`Module not found: Error: Can't resolve 'style-loader'`
+
+This is because those versions of Yarn have different package resolution rules than Yarn v1.x. If this is the case for you, just install the package directly.
+
 ### FAQ
 
 #### Statically imported images won't load
@@ -528,6 +539,10 @@ See [local images](https://nextjs.org/docs/basic-features/image-optimization#loc
 #### This addon breaks when the .mjs extension for the next config is used
 
 Right now using `next.config.mjs` isn't supported by this addon. See [next.config.js](#nextconfigjs) for more details. Right now, it is required for you to use the `.js` extension instead. Feel free to help out on [this discussion](https://github.com/RyanClementsHax/storybook-addon-next/discussions/28) to get this supported.
+
+#### Module not found: Error: Can't resolve [package name]
+
+You might get this if you're using Yarn v2 or v3. See [Notes for Yarn v2 and v3 users](#notes-for-yarn-v2-and-v3-users) for more details.
 
 ## Similar Projects
 
