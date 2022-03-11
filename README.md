@@ -79,12 +79,12 @@
 
 ## Examples
 
-- Nextjs v12 - [Source](./examples/nextv12/README.md)
-- Tailwindcss - [Source](./examples/with-tailwindcss/README.md)
-- Nextjs v11.1 - [Source](./examples/nextv11_1/README.md)
-- Nextjs v11.0 - [Source](./examples/nextv11_0/README.md)
-- Nextjs v10 - [Source](./examples/nextv10/README.md)
-- Nextjs v9 - [Source](./examples/nextv9/README.md)
+- Nextjs v12 - [Source](https://github.com/RyanClementsHax/storybook-addon-next/blob/main/examples/nextv12/README.md)
+- Tailwindcss - [Source](https://github.com/RyanClementsHax/storybook-addon-next/blob/main/examples/with-tailwindcss/README.md)
+- Nextjs v11.1 - [Source](https://github.com/RyanClementsHax/storybook-addon-next/blob/main/examples/nextv11_1/README.md)
+- Nextjs v11.0 - [Source](https://github.com/RyanClementsHax/storybook-addon-next/blob/main/examples/nextv11_0/README.md)
+- Nextjs v10 - [Source](https://github.com/RyanClementsHax/storybook-addon-next/blob/main/examples/nextv10/README.md)
+- Nextjs v9 - [Source](https://github.com/RyanClementsHax/storybook-addon-next/blob/main/examples/nextv9/README.md)
 
 ## Getting Started
 
@@ -251,7 +251,7 @@ Example.parameters: {
 }
 ```
 
-See this [example](./examples/nextv12/stories/pages/nextjsRouting.stories.jsx) for a reference.
+See this [example](https://github.com/RyanClementsHax/storybook-addon-next/blob/main/examples/nextv12/stories/pages/nextjsRouting.stories.jsx) for a reference.
 
 #### Global Defaults
 
@@ -267,7 +267,7 @@ export const parameters = {
 }
 ```
 
-See this [example](./examples/nextv12/.storybook/preview.js) for a reference.
+See this [example](https://github.com/RyanClementsHax/storybook-addon-next/blob/main/examples/nextv12/.storybook/preview.js) for a reference.
 
 #### Default Router
 
@@ -431,7 +431,7 @@ export default HelloWorld
 
 Next.js lets you [customize postcss config](https://nextjs.org/docs/advanced-features/customizing-postcss-config#default-behavior). Thus this addon will automatically handle your postcss config for you.
 
-This allows for cool things like zero config tailwindcss! See the [with-tailwindcss example](examples/with-tailwindcss/README.md) for reference! Its a clone of [Next.js's tailwindcss example](https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss) set up with storybook and this addon.
+This allows for cool things like zero config tailwindcss! See the [with-tailwindcss example](https://github.com/RyanClementsHax/storybook-addon-next/blob/main/examples/with-tailwindcss/README.md) for reference! Its a clone of [Next.js's tailwindcss example](https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss) set up with storybook and this addon.
 
 ### Absolute Imports
 
