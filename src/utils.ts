@@ -54,7 +54,9 @@ export const addScopedAlias = (
  */
 export const scopedResolve = (id: string): string => {
   const scopedModulePath = require.resolve(id, { paths: [path.resolve()] })
-  const moduleFolderStrPosition = scopedModulePath.lastIndexOf(id)
+  const moduleFolderStrPosition = scopedModulePath.lastIndexOf(
+    id.replace(/\//g /* all '/' occurances */, path.sep)
+  )
   const beginningOfMainScriptPath = moduleFolderStrPosition + id.length
   return scopedModulePath.substring(0, beginningOfMainScriptPath)
 }
