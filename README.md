@@ -81,6 +81,8 @@
 
 - Nextjs v12 - [Source](https://github.com/RyanClementsHax/storybook-addon-next/blob/main/examples/nextv12/README.md)
 - Tailwindcss - [Source](https://github.com/RyanClementsHax/storybook-addon-next/blob/main/examples/with-tailwindcss/README.md)
+- SVGR - [Source](https://github.com/RyanClementsHax/storybook-addon-next/blob/main/examples/svgr/README.md)
+- Nx - [Source](https://github.com/RyanClementsHax/storybook-addon-next/blob/main/examples/with-nx/README.md)
 - Nextjs v11.1 - [Source](https://github.com/RyanClementsHax/storybook-addon-next/blob/main/examples/nextv11_1/README.md)
 - Nextjs v11.0 - [Source](https://github.com/RyanClementsHax/storybook-addon-next/blob/main/examples/nextv11_0/README.md)
 - Nextjs v10 - [Source](https://github.com/RyanClementsHax/storybook-addon-next/blob/main/examples/nextv10/README.md)
