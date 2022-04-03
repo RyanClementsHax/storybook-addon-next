@@ -34,6 +34,7 @@
   - [Postcss](#postcss)
   - [Absolute Imports](#absolute-imports)
   - [Runtime Config](#runtime-config)
+  - [Custom Webpack Config](#custom-webpack-config)
   - [Typescript](#typescript)
   - [next.config.js](#nextconfigjs)
     - [ESM](#esm)
@@ -63,6 +64,8 @@
 👉 [Absolute Imports](#absolute-imports)
 
 👉 [Runtime Config](#runtime-config)
+
+👉 [Custom Webpack Config](#custom-webpack-config)
 
 👉 [Typescript](#typescript) (already supported out of the box by Storybook)
 
@@ -494,6 +497,39 @@ Calls to `getConfig` would return the following object when called within Storyb
   "serverRuntimeConfig": {},
   "publicRuntimeConfig": {
     "staticFolder": "/static"
+  }
+}
+```
+
+### Custom Webpack Config
+
+Next.js comes with a lot of things for free out of the box like sass support, but sometimes we add [custom webpack config modifications to Next.js](https://nextjs.org/docs/api-reference/next.config.js/custom-webpack-config). This addon takes care of most of the webpack modifications you would want to add. If Next.js supports a feature out of the box, then this addon will make that feature work out of the box in Storybook. If Next.js doesn't support something out of the box, but makes it easy to configure, then this addon will do the same for that thing for Storybook. If you find something that you still need to configure webpack to get a Next.js feature to work in Storybook after adding this addon, this is likely a bug and please feel free to [open up an issue](https://github.com/RyanClementsHax/storybook-addon-next/issues).
+
+Any webpack modifications desired for Storybook should be made in [.storybook/main.js](https://storybook.js.org/docs/react/configure/webpack) according to Storybook's docs.
+
+Note: Not all webpack modifications are copy/paste-able between `next.config.js` and `.storybook/main.js`. It is recommended to do your reasearch on how to properly make your modifcation to Storybook's webpack config and on how [webpack works](https://webpack.js.org/concepts/).
+
+Please feel free to contribute an [example](https://github.com/RyanClementsHax/storybook-addon-next/blob/main/examples) to help out the community.
+
+Below is an example of how to add svgr support to Storybook with this addon. The full example can be found [here](https://github.com/RyanClementsHax/storybook-addon-next/blob/main/examples/svgr/README.md).
+
+```js
+// .storybook/main.js
+module.exports = {
+  // other config omitted for brevity
+  webpackFinal: async config => {
+    // this modifies the existing image rule to exclude .svg files
+    // since we want to handle those files with @svgr/webpack
+    const imageRule = config.module.rules.find(rule => rule.test.test('.svg'))
+    imageRule.exclude = /\.svg$/
+
+    // configure .svg files to be loaded with @svgr/webpack
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ['@svgr/webpack']
+    })
+
+    return config
   }
 }
 ```

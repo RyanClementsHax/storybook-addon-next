@@ -13,10 +13,14 @@ module.exports = {
     builder: 'webpack5'
   },
   webpackFinal: async config => {
+    const imageRule = config.module.rules.find(rule => rule.test.test('.svg'))
+    imageRule.exclude = /\.svg$/
+
     config.module.rules.push({
       test: /\.svg$/,
       use: ['@svgr/webpack']
     })
+
     return config
   }
 }
