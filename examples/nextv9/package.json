@@ -11,7 +11,7 @@
     "serve-storybook": "serve storybook-static"
   },
   "dependencies": {
-    "next": "^9.0.0",
+    "next": "^12.1.0",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
     "sass": "^1.49.0"
