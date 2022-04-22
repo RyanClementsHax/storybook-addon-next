@@ -4,6 +4,7 @@ import path from 'path'
 import { NextConfig } from 'next'
 import { DefinePlugin } from 'webpack'
 import { addScopedAlias } from '../utils'
+import { assignDefaults } from './assignDefaults'
 
 export const configureConfig = async (
   baseConfig: WebpackConfig,
@@ -32,7 +33,7 @@ const resolveNextConfig = async (
         })
       : nextConfigExport
 
-  return nextConfig
+  return assignDefaults(nextConfig)
 }
 
 const setupRuntimeConfig = (
@@ -45,7 +46,7 @@ const setupRuntimeConfig = (
       // https://github.com/vercel/next.js/blob/57702cb2a9a9dba4b552e0007c16449cf36cfb44/packages/next/client/index.tsx#L101
       'process.env.__NEXT_RUNTIME_CONFIG': JSON.stringify({
         serverRuntimeConfig: {},
-        publicRuntimeConfig: nextConfig.publicRuntimeConfig
+        publicRuntimeConfig: nextConfig.publicRuntimeConfig || {}
       })
     })
   )

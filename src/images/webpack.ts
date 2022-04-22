@@ -1,9 +1,18 @@
+import { NextConfig } from 'next'
 import semver from 'semver'
-import { Configuration as WebpackConfig, RuleSetRule } from 'webpack'
+import {
+  Configuration as WebpackConfig,
+  DefinePlugin,
+  RuleSetRule
+} from 'webpack'
 import { addScopedAlias, getNextjsVersion } from '../utils'
 
-export const configureImages = (baseConfig: WebpackConfig): void => {
+export const configureImages = (
+  baseConfig: WebpackConfig,
+  nextConfig: NextConfig
+): void => {
   configureStaticImageImport(baseConfig)
+  configureImageOptions(baseConfig, nextConfig)
   addScopedAlias(baseConfig, 'next/image')
 }
 
@@ -40,3 +49,26 @@ const configureStaticImageImport = (baseConfig: WebpackConfig): void => {
     }
   })
 }
+
+const configureImageOptions = (
+  baseConfig: WebpackConfig,
+  nextConfig: NextConfig
+): void =>
+  void baseConfig.plugins?.push(
+    new DefinePlugin({
+      // this mimics what nextjs does
+      // https://github.com/vercel/next.js/blob/v12.1.5/packages/next/build/webpack-config.ts#L1374
+      'process.env.__NEXT_IMAGE_OPTS': JSON.stringify({
+        deviceSizes: nextConfig.images?.deviceSizes,
+        imageSizes: nextConfig.images?.imageSizes,
+        path: nextConfig.images?.path,
+        loader: nextConfig.images?.loader,
+        ...(baseConfig.mode === 'development'
+          ? {
+              // pass domains in development to allow validating on the client
+              domains: nextConfig.images?.domains
+            }
+          : {})
+      })
+    })
+  )
