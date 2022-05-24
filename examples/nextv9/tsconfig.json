@@ -17,7 +17,10 @@
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "lib": ["dom", "dom.iterable", "esnext"],
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]
+    }
   },
   "exclude": ["node_modules", ".next", "out", "storybook-static"],
   "include": [

@@ -48,7 +48,8 @@
     "postcss-loader": "^6.2.1",
     "resolve-url-loader": "^5.0.0",
     "sass-loader": "^12.4.0",
-    "semver": "^7.3.5"
+    "semver": "^7.3.5",
+    "tsconfig-paths-webpack-plugin": "^3.5.2"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^6.4.13",
@@ -79,8 +80,8 @@
     "webpack": "^5.65.0"
   },
   "peerDependencies": {
-    "@storybook/addons": "^6.0.0",
     "@storybook/addon-actions": "^6.0.0",
+    "@storybook/addons": "^6.0.0",
     "next": "^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0",
     "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
     "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"

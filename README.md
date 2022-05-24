@@ -536,7 +536,18 @@ module.exports = {
 
 ### Typescript
 
-There is no special thing this addon does to support [Typescript](https://www.typescriptlang.org/) because Storybook already supports it out of the box. I just listed it in the [supported features](#supported-features) for completeness and not to confuse anyone comparing the list of "out of the box" [features](https://nextjs.org/docs/getting-started) Next.js has with this addon.
+Storybook handles most [Typescript](https://www.typescriptlang.org/) configurations, but this addon adds additional support for Next.js's support for [Absolute Imports and Module path aliases](https://nextjs.org/docs/advanced-features/module-path-aliases). In short, it takes into account your `tsconfig.json`'s [baseUrl](https://www.typescriptlang.org/tsconfig#baseUrl) and [paths](https://www.typescriptlang.org/tsconfig#paths). Thus, a `tsconfig.json` like the one below would work out of the box.
+
+```json
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/components/*": ["components/*"]
+    }
+  }
+}
+```
 
 ### next.config.js
 
