@@ -1,5 +1,6 @@
 import { Header } from 'components/Header'
 import { MyComponent } from 'components/MyComponent'
+import { MyOtherComponent } from '@/components/MyOtherComponent'
 import Head from 'next/head'
 
 export default function AbsoluteImports() {
@@ -11,8 +12,13 @@ export default function AbsoluteImports() {
       </Head>
       <Header />
       <main>
-        <p>This uses an absolute import:</p>
-        <MyComponent>Im absolutely imported</MyComponent>
+        <p>Below are components imported using absolute imports:</p>
+        <MyComponent>
+          Im absolutely imported off of the base url in tsconfig.json
+        </MyComponent>
+        <MyOtherComponent>
+          Im absolutely imported off of a path in tsconfig.json
+        </MyOtherComponent>
       </main>
     </div>
   )

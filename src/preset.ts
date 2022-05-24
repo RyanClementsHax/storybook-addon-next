@@ -4,7 +4,7 @@ import { StorybookConfig } from '@storybook/core-common'
 import { TransformOptions } from '@babel/core'
 import { configureConfig } from './config/webpack'
 import { configureCss } from './css/webpack'
-import { configureAbsoluteImports } from './absoluteImports/webpack'
+import { configureImports } from './imports/webpack'
 import { configureRouting } from './routing/webpack'
 import { configureStyledJsx } from './styledJsx/webpack'
 import { configureStyledJsxTransforms } from './styledJsx/babel'
@@ -33,7 +33,7 @@ export const webpackFinal: StorybookConfig['webpackFinal'] = async (
   const nextConfig = await configureConfig(baseConfig, nextConfigPath)
 
   configureRuntimeNextjsVersionResolution(baseConfig)
-  configureAbsoluteImports(baseConfig)
+  configureImports(baseConfig)
   configureCss(baseConfig, nextConfig)
   configureImages(baseConfig)
   configureRouting(baseConfig)
