@@ -49,6 +49,7 @@
     "resolve-url-loader": "^5.0.0",
     "sass-loader": "^12.4.0",
     "semver": "^7.3.5",
+    "tsconfig-paths": "^4.0.0",
     "tsconfig-paths-webpack-plugin": "^3.5.2"
   },
   "devDependencies": {
