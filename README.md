@@ -432,6 +432,32 @@ function HelloWorld() {
 export default HelloWorld
 ```
 
+You can use your own babel config too. This is an example of how you can customize styled-jsx.
+
+```json
+// .babelrc or whatever config file you use
+{
+  "presets": [
+    [
+      "next/babel",
+      {
+        "styled-jsx": {
+          "plugins": ["@styled-jsx/plugin-sass"]
+        }
+      }
+    ]
+  ]
+}
+```
+
+If you use a monorepo, you may need to add the babel config yourself to your storybook project. Just add a babel config to your storybook project with the following contents to get started.
+
+```json
+{
+  "presets": ["next/babel"]
+}
+```
+
 ### Postcss
 
 Next.js lets you [customize postcss config](https://nextjs.org/docs/advanced-features/customizing-postcss-config#default-behavior). Thus this addon will automatically handle your postcss config for you.
