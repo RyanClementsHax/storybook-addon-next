@@ -22,8 +22,9 @@ export const managerEntries = (entry: string[] = []): string[] => [
   require.resolve('./register')
 ]
 
-export const babel = (config: TransformOptions): TransformOptions =>
-  configureStyledJsxTransforms(config)
+export const babel = async (
+  config: TransformOptions
+): Promise<TransformOptions> => await configureStyledJsxTransforms(config)
 
 export const webpackFinal: StorybookConfig['webpackFinal'] = async (
   baseConfig,
