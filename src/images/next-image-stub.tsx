@@ -21,7 +21,10 @@ if (semver.gt(process.env.__NEXT_VERSION!, '9.0.0')) {
   })
 
   // https://github.com/vercel/next.js/issues/36417#issuecomment-1117360509
-  if (semver.gte(process.env.__NEXT_VERSION!, '12.1.5')) {
+  if (
+    semver.gte(process.env.__NEXT_VERSION!, '12.1.5') &&
+    semver.lt(process.env.__NEXT_VERSION!, '12.2.0')
+  ) {
     Object.defineProperty(NextImage, '__esModule', {
       configurable: true,
       value: true
