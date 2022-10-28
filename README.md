@@ -82,6 +82,7 @@
 
 ## Examples
 
+- Nextjs v13 - [Source](https://github.com/RyanClementsHax/storybook-addon-next/blob/main/examples/nextv13/README.md)
 - Nextjs v12 - [Source](https://github.com/RyanClementsHax/storybook-addon-next/blob/main/examples/nextv12/README.md)
 - Tailwindcss - [Source](https://github.com/RyanClementsHax/storybook-addon-next/blob/main/examples/with-tailwindcss/README.md)
 - SVGR - [Source](https://github.com/RyanClementsHax/storybook-addon-next/blob/main/examples/svgr/README.md)
