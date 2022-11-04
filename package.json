@@ -50,7 +50,7 @@
     "sass-loader": "^12.4.0",
     "semver": "^7.3.5",
     "tsconfig-paths": "^4.0.0",
-    "tsconfig-paths-webpack-plugin": "^3.5.2"
+    "tsconfig-paths-webpack-plugin": "^4.0.0"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^6.4.13",
@@ -69,9 +69,6 @@
     "husky": "^7.0.4",
     "lint-staged": "^12.1.2",
     "next": "^12.0.7",
-    "nextv10": "npm:next@10.0.0",
-    "nextv11": "npm:next@11.0.0",
-    "nextv9": "npm:next@9.0.0",
     "prettier": "^2.5.1",
     "react": "^17.0.2",
     "semantic-release": "^19.0.3",
