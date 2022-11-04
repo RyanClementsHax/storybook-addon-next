@@ -7,6 +7,8 @@ export const configureImages = (baseConfig: WebpackConfig): void => {
   addScopedAlias(baseConfig, 'next/image')
 }
 
+const fallbackFilename = 'static/media/[path][name][ext]'
+
 const configureStaticImageImport = (baseConfig: WebpackConfig): void => {
   const version = getNextjsVersion()
   if (semver.lt(version, '11.0.0')) return
@@ -26,7 +28,7 @@ const configureStaticImageImport = (baseConfig: WebpackConfig): void => {
       {
         loader: require.resolve('./next-image-loader-stub'),
         options: {
-          filename: assetRule.generator?.filename
+          filename: assetRule.generator?.filename ?? fallbackFilename
         }
       }
     ]
@@ -36,7 +38,7 @@ const configureStaticImageImport = (baseConfig: WebpackConfig): void => {
     issuer: /\.(css|scss|sass)$/,
     type: 'asset/resource',
     generator: {
-      filename: assetRule.generator?.filename
+      filename: assetRule.generator?.filename ?? fallbackFilename
     }
   })
 }
