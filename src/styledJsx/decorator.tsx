@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-import { Fragment } from 'react'
+import React, { Fragment } from 'react'
 
-let StyleRegistry: React.FC
+let StyleRegistry: React.FC<{ children: React.ReactNode }>
 
 try {
   // next >= v12
