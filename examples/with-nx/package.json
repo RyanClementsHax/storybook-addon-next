@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "next-app:start": "nx serve",
-    "shared-ui-atoms:storybook": "nx run shared-ui-atoms:storybook"
+    "shared-ui-atoms:storybook": "nx run shared-ui-atoms:storybook",
+    "shared-ui-atoms:build-storybook": "NODE_ENV=production nx run shared-ui-atoms:build-storybook"
   },
   "private": true,
   "dependencies": {

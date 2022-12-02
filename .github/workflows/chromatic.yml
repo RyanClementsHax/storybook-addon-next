@@ -1,0 +1,61 @@
+name: E2E
+
+on:
+  push:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  e2e:
+    strategy:
+      matrix:
+        include:
+          - project-name: next v13
+            project-path: examples/nextv13
+            chromatic-token: CHROMATIC_TOKEN_EXAMPLES_NEXTV13
+          - project-name: next v12
+            project-path: examples/nextv12
+            chromatic-token: CHROMATIC_TOKEN_EXAMPLES_NEXTV12
+          - project-name: next v11.1
+            project-path: examples/nextv11_1
+            chromatic-token: CHROMATIC_TOKEN_EXAMPLES_NEXTV11_1
+          - project-name: next v11.0
+            project-path: examples/nextv11_0
+            chromatic-token: CHROMATIC_TOKEN_EXAMPLES_NEXTV11_0
+          - project-name: next v10
+            project-path: examples/nextv10
+            chromatic-token: CHROMATIC_TOKEN_EXAMPLES_NEXTV10
+          - project-name: next v9
+            project-path: examples/nextv9
+            chromatic-token: CHROMATIC_TOKEN_EXAMPLES_NEXTV9
+          - project-name: svgr
+            project-path: examples/svgr
+            chromatic-token: CHROMATIC_TOKEN_EXAMPLES_SVGR
+          - project-name: nx
+            project-path: examples/with-nx
+            chromatic-token: CHROMATIC_TOKEN_EXAMPLES_WITH_NX
+            build-script-name: shared-ui-atoms:build-storybook
+          - project-name: tailwindcss
+            project-path: examples/with-tailwindcss
+            chromatic-token: CHROMATIC_TOKEN_EXAMPLES_WITH_TAILWINDCSS
+    name: ${{ matrix.project-name }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # 👈 Required to retrieve git history
+      - name: restore addon dependencies
+        uses: bahmutov/npm-install@v1
+      - name: build addon
+        run: yarn build
+      - name: restore project dependencies
+        uses: bahmutov/npm-install@v1
+        with:
+          working-directory: ${{ matrix.project-path }}
+      - name: publish to chromatic
+        uses: chromaui/action@v1
+        with:
+          projectToken: ${{ secrets[matrix.chromatic-token] }}
+          workingDir: ${{ matrix.project-path }}
+          buildScriptName: ${{ matrix.build-script-name }}
