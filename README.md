@@ -18,7 +18,7 @@
   - [Partay](#partay)
 - [Documentation](#documentation)
   - [Options](#options)
-  - [Next.js's Image Component](#nextjss-image-component)
+  - [Next.js's Image Component (partial support)](#nextjss-image-component-partial-support)
     - [Local Images](#local-images)
     - [Remote Images](#remote-images)
     - [Optimization](#optimization)
@@ -42,14 +42,14 @@
   - [FAQ](#faq)
     - [Statically imported images won't load](#statically-imported-images-wont-load)
     - [This addon breaks when the .mjs extension for the next config is used](#this-addon-breaks-when-the-mjs-extension-for-the-next-config-is-used)
-    - [Module not found: Error: Can't resolve [package name]](#module-not-found-error-cant-resolve-package-name)
+    - [Module not found: Error: Can't resolve \[package name\]](#module-not-found-error-cant-resolve-package-name)
 - [Similar Projects](#similar-projects)
 - [Want to suggest additional features?](#want-to-suggest-additional-features)
 - [Didn't find what you were looking for?](#didnt-find-what-you-were-looking-for)
 
 ## Supported Features
 
-👉 [Next.js's Image Component](#nextjss-image-component)
+👉 [Next.js's Image Component (partial support)](#nextjss-image-component-partial-support)
 
 👉 [Next.js Routing](#nextjs-routing)
 
@@ -67,7 +67,7 @@
 
 👉 [Custom Webpack Config](#custom-webpack-config)
 
-👉 [Typescript](#typescript) (already supported out of the box by Storybook)
+👉 [Typescript](#typescript)
 
 ## Requirements
 
@@ -160,9 +160,13 @@ module.exports = {
 
 - `nextConfigPath`: The absolute path to the `next.config.js`
 
-### Next.js's Image Component
+### Next.js's Image Component (partial support)
 
 [next/image](https://nextjs.org/docs/api-reference/next/image) is [notoriously difficult](https://github.com/vercel/next.js/issues/18393) to get working with storybook. This addon allows you to use Next.js's `Image` component with no configuration!
+
+> Because the image component has features, like image optimization, configured by options that require the Next.js config file to be read and processed by the framework and there is no public function exposed by Next.js to resolve and those options, it is not possible to support those features stably.
+>
+> If you want to see this better supported, feel free to contribute to the [discussion on Next.js's side](https://github.com/vercel/next.js/discussions/40891) or [the discussion on our side](https://github.com/RyanClementsHax/storybook-addon-next/discussions/119)
 
 #### Local Images
 
