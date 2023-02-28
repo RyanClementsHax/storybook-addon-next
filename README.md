@@ -1,5 +1,15 @@
 # Storybook Addon Next <!-- omit in toc -->
 
+## ⚠️ DEPRECATED ⚠️ <!-- omit in toc -->
+
+This addon has been deprecated in favor of [@storybook/nextjs](https://www.npmjs.com/package/@storybook/nextjs) which is the Storybook official addon for supporting Next.js features in Storybook. It supports everything `storybook-addon-next` does and much more! I even worked on developing this with them so you should be in good hands.
+
+Storybook made [migration docs](https://storybook.js.org/recipes/next) to help out. Any issues with migrating should be [opened on Storybook's side](https://github.com/storybookjs/storybook/issues).
+
+Going from here, `storybook-addon-next` will support Storybook v7, which comes out on [March 14, 2023](https://storybook.js.org/blog/storybook-day/), to help those migrating, but will only receive security updates for up to 6 months after (ending September 14, 2023).
+
+---
+
 **😱 No config support for Next.js**: Tired of writing and debugging webpack config? What Next.js supports out of the box, this addon makes possible in Storybook
 
 [![current version](https://img.shields.io/npm/v/storybook-addon-next.svg)](https://www.npmjs.com/package/storybook-addon-next)
