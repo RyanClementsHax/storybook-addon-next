@@ -8,8 +8,8 @@ module.exports = {
     '@storybook/addon-essentials',
     'storybook-addon-next'
   ],
-  framework: '@storybook/react',
-  core: {
-    builder: 'webpack5'
+  framework: {
+    name: '@storybook/react-webpack5',
+    options: {}
   }
 }
